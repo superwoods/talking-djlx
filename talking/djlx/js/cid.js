@@ -15,7 +15,7 @@ const cid = [
 	// 	isBlank: false
 	// },
 	{
-		name: '机构概况',
+		name: '新华网独家连线',
 		cid: 11230092,
 		nid: 11230411,
 		nav: true,
