@@ -1,0 +1,145 @@
+.rotGallerySP
+    background-color: #cae7f5
+    border-radius: 4px
+
+    galleryTopHeight = 444px
+    .rotGallery
+        height galleryTopHeight + 35px
+
+        .gallery-top
+            border-radius: 4px
+            width: 936px
+            height galleryTopHeight
+            position: absolute
+            top: 0
+            left 0
+            margin-left: 60px
+
+            .item 
+                .pic
+                    pic()
+                    // background: #ffffff
+                    width: 638px
+                    right: 0
+                    left auto
+
+                .title
+                    width: 299px
+                    height 100%
+                    background: #ffffff url(rotTitleBg.png)
+                    bottom auto
+                    padding: 0
+
+                    .text
+                        width: 70%
+                        
+                        // margin-top: 30%
+
+                        &
+                        & a
+                            color: var(--moo-color)
+                            justify-content: center
+                            align-items: center
+                            font-weight: 600
+                            height 100%
+
+                        a
+                            align-items: center
+
+
+        galleryThumbsRight = 50px
+
+        .swiper-button-prev
+        .swiper-button-next
+            outline: 0
+            left auto
+            right: galleryThumbsRight + 48px
+            color: var(--moo-color)
+
+        .swiper-button-prev
+            transform: rotate(90deg)
+            top: 12px
+
+        .swiper-button-next
+            transform: rotate(90deg) 
+            top: auto
+            bottom: 18px
+
+        .gallery-thumbs
+            position: absolute
+            right: galleryThumbsRight
+            top: 50%
+            transform: translateY(-55%)
+            width: 118px
+            height galleryTopHeight - 60px
+
+            .swiper-slide
+                width: 118px
+                height @width
+
+                .pic
+                    left 50%
+                    top: 0
+                    transform: translateX(-50%)
+                    width: 114px
+                    height @width
+                    border-radius: 100%
+                    // border: 1px solid var(--moo-color)
+
+.is-mobile
+    .rotGallerySP
+        // background-color: #cae7f5
+        // border-radius: 4px
+
+        // galleryTopHeight = 444px
+        .rotGallery
+            // height galleryTopHeight + 35px
+            height auto
+            padding-top: 0
+
+            .gallery-top
+                // border-radius: 4px
+                width: 100%
+                margin: 0 auto
+                top: 0
+                position: relative
+
+                .item 
+                    // background: none
+                    background-size: cover
+
+                    .pic
+                        // background: #ffffff
+                        width: 100%
+                        height 300px
+                        right: auto
+                        left 0
+                        top: 0
+                        position: relative
+                        
+
+                    .title
+                        position: static
+                        width: 100%
+                        height auto
+                        background: none
+
+                        .text
+                            width: 90%
+                            margin-top: 20px
+
+                            &
+                            & a
+                                // color: var(--moo-color)
+                                // justify-content: flex-start
+                                // align-items: flex-start
+                                font-weight: 600
+
+                            a
+                                height auto
+                                padding-bottom: 60px
+
+        
+            .swiper-button-prev
+            .swiper-button-next
+                display: none 

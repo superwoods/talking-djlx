@@ -1,0 +1,288 @@
+.is-mobile
+
+    .area
+        width: 100%
+        overflow hidden
+
+    // .col1
+    //     .area
+    //         padding-left: 0
+    //         padding-right: 0
+
+    //     .list
+    //         font-weight: normal
+           
+    // .col1 
+    //     .area
+    //         padding-top: 6px
+    //         padding-bottom: 10px
+
+    //     .content
+    //         height auto
+
+    //         .rot
+    //         .right
+    //             position: static
+
+    //         .right
+    //             // top: 0
+    //             // right: 0;
+    //             width: 90%;
+    //             height: auto
+    //             // overflow: hidden;
+    //             margin:  16px auto
+
+    .list
+        li
+            liHeight = 26px
+            font-size: 16px
+            position relative
+            line-height: liHeight
+            padding-left: 10px
+            margin-bottom: 4px
+            height auto
+
+            &:before
+                content: ''
+                width: 4px
+                height @width
+                position: absolute
+                top: ((liHeight - @height) / 2) - 1
+                left: 0
+                background-color: blueColor
+                pointer-events: none
+                border-radius: 100%
+
+    .more
+        margin-bottom: 30px
+
+    .footer
+        .textAndImg
+            width: 100%
+
+
+
+    .col1 .content .rot
+        border-left: none 
+        border-right: none
+
+    .col1 .content .right
+        justify-content: flex-start;
+        margin-top: 0
+
+    .col1 .area
+        padding-bottom: 10px !important
+        margin-bottom: 10px !important
+    
+    // .items-col
+    //     width: 100%
+    //     height 60px
+    //     background-size: auto 70%;
+    //     background-position: center center;
+        
+    // .items-col0-0
+    //     background-size: auto 100%
+    //     background-position: 0 center
+    //     margin-top: 10px
+    //     height 44px
+    
+    .rotBox .rot-prev
+    .rotBox .rot-next
+        display: none
+
+    .contentTxt
+        // font-size: 16px
+        // line-height: 28px
+        // text-indent: 2em
+        margin: 10px 5% 
+        column-count: 1
+        column-gap: 0
+
+    .itemLRBox
+        display: block
+        // justify-content: space-between
+        // flex-direction: column
+        height auto
+        // position relative
+        .colA
+            justify-content: flex-start
+
+
+        itemsMargin = 40px
+
+        .itemsColTiny
+            margin: 20px itemsMargin 20px
+
+        .item1
+            width: 100%
+            margin 0 auto 30px
+
+            .list
+                margin: 0 30px 0 itemsMargin
+
+        .item2
+            width: 100%
+            height auto
+            // background: url(itemLRBoxBg.png)
+            // padding-bottom: itemsMargin
+
+            // .list
+            //     // width: 80%
+            //     margin: 0 itemsMargin
+            //     background: #ffffff
+            //     border-radius: 10px
+            //     border: 1px #dca312 dashed 
+            //     min-height: 50px
+            //     padding: 20px itemsMargin
+
+    .col3Box
+        display: block
+        margin: 10px 0
+
+        .titlePic
+            width: 96%
+            height 260px
+            // background: url(col3Bg.png)
+            background-repeat: no-repeat
+            background-size: 100% auto
+            margin: 0 auto 10px
+
+        .pageChildNav
+            width: 90%
+            margin: 0 auto
+            // display: flex
+            // justify-content: center
+            // flex-direction: column
+            // flex: 1 0 auto
+            // margin-right: 0
+            // margin-left: 0
+            // margin-top: 0
+
+            .item
+                // font-size: 24px
+                a
+                    border-radius: 10px
+                    // border-top-right-radius: 10px 
+                    // border-bottom-right-radius: @border-top-right-radius 
+
+                    &
+                    &.active 
+                    &:hover
+                        padding: 12px 10%
+    .boxBg
+        background-size: 100% auto
+
+    .col4Box
+        // position relative
+        width: 96%
+        margin: 10px auto 20px
+        background: url(colSpBg.png)
+        background-size: 100% auto
+        // background-repeat: no-repeat
+        height 1060px
+        border-radius: 10px
+
+        .item2
+            top: 20px
+            left: 50%
+            transform: translateX(-50%)
+            z-index 2
+
+            &:after
+                // position: absolute
+                right: auto
+                left 50%
+                width 2px
+                height: 750px
+                bottom: - @height
+                // content: ''
+                // overflow hidden
+                // background: #FFFF
+                transform: rotate(0) translate(-50%, 0);
+
+        .item3
+            top: 230px
+            left: 50%
+            transform: translateX(-50%)
+            &:after
+                display: none
+        .item4
+            top: auto
+            bottom: 220px
+            left: 50%
+            transform: translateX(-50%)
+            &:after
+                display: none
+        .item5
+            top: auto
+            bottom: 40px
+            left: 50%
+            transform: translateX(-50%)
+            &:after
+                display: none
+
+    .col5Box
+        display: block
+        width: 96%
+        margin: 0 auto
+        padding-bottom: 20px
+        
+        .itemBox
+            padding-bottom: 20px
+
+            .list
+                padding-top: 20px
+                padding-bottom: 10px
+
+            .itemsColSpBg
+                margin-top: 0
+                
+        .itemBox+.itemBox
+            margin-left: 0
+
+    .col6Box
+        display: block
+        width: 96%
+        margin: 0 auto
+
+        .itemBox
+            // margin-top: 20px
+            // flex: 0 1 auto
+            width: 90%
+            padding: 0
+            margin: 0 auto
+
+        
+    .hasNavBox
+        // position relative
+        display: block
+        // width: 100%
+        
+    // .hasNavContentBox
+    //     position relative
+    //     width: 100%
+    //     height: 100%
+    //     min-height: 300px
+  
+    .pageChildNav
+        width: 94%
+        margin: 0 auto
+        display: flex
+        overflow-x: scroll
+        justify-content: flex-start
+        border-bottom: 1px solid #ffb400
+
+        .item
+            // line-height: 26px
+            // font-size: 20px
+            // font-weight: 300
+            margin-bottom: 0
+            flex: 1 0 auto
+
+            &.active
+                order -1
+
+            a
+                border-top-left-radius: 10px 
+                border-top-right-radius: @border-top-left-radius
+                border-bottom-left-radius: 0
