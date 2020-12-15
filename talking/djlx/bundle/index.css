@@ -1767,3 +1767,6 @@ a:hover .itemsColTiny {
   background-position: 0 center;
   background-repeat: no-repeat;
 }
+.is-pc .rotRightPicTitleAbs-pagination {
+  display: none;
+}
