@@ -300,8 +300,7 @@ a:hover {
 }
 .rotRightPicTitleAbs,
 .rotRightPicTitleAbsBox,
-.rotRightPicTitleAbs-container,
-.rotRightPicTitleAbsBg {
+.rotRightPicTitleAbs-container {
   width: 1200px;
   height: 505px;
   margin: 0 auto;
@@ -341,6 +340,18 @@ a:hover {
 .rotRightPicTitleAbs-container .item-rightPicTitleAbs .pic img {
   width: auto;
   height: 385px;
+}
+.rotRightPicTitleAbs-container .item-rightPicTitleAbs .pic:after {
+  content: '';
+  display: block;
+  z-index: 2;
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  background-image: url("icon-play.png");
+  bottom: 13px;
+  left: 13px;
+  pointer-events: none;
 }
 .rotRightPicTitleAbs-container .item-rightPicTitleAbs .textBox {
   flex: 1 0;
@@ -417,42 +428,35 @@ a:hover {
 .rotRightPicTitleAbs-next {
   background-image: url("icon-next.png");
 }
-.is-mobile .rotRightPicTitleAbsBoxBox {
-  padding: 20px 0;
-  overflow: hidden;
-}
-.is-mobile .rotRightPicTitleAbsBoxBox .item-rightPicTitleAbs-in {
-  flex-direction: column-reverse;
-  justify-content: flex-start;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-.is-mobile .rotRightPicTitleAbsBoxBox .rotRightPicTitleAbsBox,
-.is-mobile .rotRightPicTitleAbsBoxBox .rotRightPicTitleAbs {
-  width: 100%;
-  height: 600px;
-}
-.is-mobile .rotRightPicTitleAbsBoxBox .rotRightPicTitleAbs {
-  overflow: hidden;
-}
-.is-mobile .rotRightPicTitleAbsBoxBox .rotRightPicTitleAbs-prev,
-.is-mobile .rotRightPicTitleAbsBoxBox .rotRightPicTitleAbs-next {
+.is-pc .rotRightPicTitleAbs-pagination {
   display: none;
 }
-.is-mobile .rotRightPicTitleAbsBoxBox .swiper-pagination-bullet {
-  width: 20px;
+.is-mobile .rotRightPicTitleAbs-prev,
+.is-mobile .rotRightPicTitleAbs-next {
+  display: none;
 }
-.is-mobile .rotRightPicTitleAbsBoxBox .swiper-pagination-bullet+.swiper-pagination-bullet {
+.is-mobile .rotRightPicTitleAbs,
+.is-mobile .rotRightPicTitleAbsBox,
+.is-mobile .rotRightPicTitleAbs-container {
+  width: 100%;
+  height: 505px;
+  margin: 0 auto;
+}
+.is-mobile .rotRightPicTitleAbs {
+  background: #f6fbfe;
+  padding: 12px;
+  width: 94%;
+}
+.is-mobile .rotRightPicTitleAbsBox .swiper-pagination-bullet {
+  width: 30px;
+  border-radius: 0;
+  height: 4px;
+  outline: 0;
+}
+.is-mobile .rotRightPicTitleAbsBox .swiper-pagination-bullet+.swiper-pagination-bullet {
   margin-left: 3px;
 }
-.is-mobile .rotRightPicTitleAbsBoxBox .mobile-itemBox {
-  display: flex;
-  justify-content: space-between;
-  height: 600px;
-}
-.is-mobile .rotRightPicTitleAbsBoxBox .textBox {
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .textBox {
   flex: 1 0;
   position: relative;
   width: 100%;
@@ -461,28 +465,33 @@ a:hover {
   justify-content: flex-start;
   padding-top: 20px;
 }
-.is-mobile .rotRightPicTitleAbsBoxBox .textBox-in {
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .textBox-in {
   margin: 0 auto;
   width: 90%;
   height: auto;
 }
-.is-mobile .rotRightPicTitleAbsBoxBox .title {
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .title {
   position: relative;
 }
-.is-mobile .rotRightPicTitleAbsBoxBox .pic {
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .pic {
   width: 100%;
-  height: 300px;
+  height: 220px;
   overflow: hidden;
+  border: 0;
+  left: 0;
 }
-.is-mobile .rotRightPicTitleAbsBoxBox .pic a {
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .pic:after {
+  display: none;
+}
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .pic a {
   width: 100%;
   height: 100%;
 }
-.is-mobile .rotRightPicTitleAbsBoxBox .pic img {
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .pic img {
   width: auto;
   height: 100%;
 }
-.is-mobile .rotRightPicTitleAbsBoxBox .title {
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .title {
   width: 100%;
   font-size: 16px;
   text-align: center;
@@ -1766,7 +1775,4 @@ a:hover .itemsColTiny {
   background-image: url("icon-view.png");
   background-position: 0 center;
   background-repeat: no-repeat;
-}
-.is-pc .rotRightPicTitleAbs-pagination {
-  display: none;
 }

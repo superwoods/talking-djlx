@@ -5,38 +5,73 @@ const addDataForHomepage = (cid) => {
 
             console.log('rotBox61InitRot targetName:', targetName);
 
-            mySwiper = new Swiper(targetName + ' .swiper-container', {
-                loop: true,
-                speed: 3000,
-                autoplay: {
-                    delay: 4000
-                },
-                // freeMode: true,
-                watchOverflow: true,
-                // slidesPerView: 3,
-                // slidesPerGroup: 3,
-                // slidesPerColumn: 2,
-                // spaceBetween: 20,
-                pagination: {
-                    el: targetName + ' .swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: targetName + ' .swiper-button-next',
-                    prevEl: targetName + ' .swiper-button-prev',
-                },
-                effect: 'coverflow',
-                centeredSlides: true,
-                coverflowEffect: {
-                    rotate: 30,
-                    stretch: 40,
-                    depth: 80,
-                    modifier: 3,
-                    slideShadows: false
-                },
-                // slidesPerView: 3,
-                // centeredSlides: true,
-            });
+            if (isPc) {
+                mySwiper = new Swiper(targetName + ' .swiper-container', {
+                    loop: true,
+                    speed: 3000,
+                    autoplay: {
+                        delay: 4000
+                    },
+                    // freeMode: true,
+                    watchOverflow: true,
+                    // slidesPerView: 3,
+                    // slidesPerGroup: 3,
+                    // slidesPerColumn: 2,
+                    // spaceBetween: 20,
+                    pagination: {
+                        el: targetName + ' .swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: targetName + ' .swiper-button-next',
+                        prevEl: targetName + ' .swiper-button-prev',
+                    },
+                    effect: 'coverflow',
+                    centeredSlides: true,
+                    coverflowEffect: {
+                        rotate: 30,
+                        stretch: 40,
+                        depth: 80,
+                        modifier: 3,
+                        slideShadows: false
+                    },
+                    // slidesPerView: 3,
+                    // centeredSlides: true,
+                });
+            } else {
+                mySwiper = new Swiper(targetName + ' .swiper-container', {
+                    loop: true,
+                    // speed: 3000,
+                    // autoplay: {
+                    //     delay: 4000
+                    // },
+                    // freeMode: true,
+                    watchOverflow: true,
+                    // slidesPerView: 3,
+                    // slidesPerGroup: 3,
+                    // slidesPerColumn: 2,
+                    // spaceBetween: 20,
+                    pagination: {
+                        el: targetName + ' .swiper-pagination',
+                        clickable: true,
+                    },
+                    // navigation: {
+                    //     nextEl: targetName + ' .swiper-button-next',
+                    //     prevEl: targetName + ' .swiper-button-prev',
+                    // },
+                    // effect: 'coverflow',
+                    // centeredSlides: true,
+                    // coverflowEffect: {
+                    //     rotate: 30,
+                    //     stretch: 40,
+                    //     depth: 80,
+                    //     modifier: 3,
+                    //     slideShadows: false
+                    // },
+                    // slidesPerView: 3,
+                    // centeredSlides: true,
+                });
+            }
         }
     };
 
