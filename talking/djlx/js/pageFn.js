@@ -1,13 +1,12 @@
-const pageFn = (cid) => {
+const pageFn = (cid, { cnt, pgnum }) => {
     // console.log('1:', cid.isOn);
-
     // if (cid.hasOwnProperty('isOn') == false) {
     console.log('         | pageFn.js:', cid);
     // const $btn = $('#addData');
     // const cid = $cid.attr('data-cid');
-    const cnt = 4; //$cid.find('li').length - 0;
+    // const cnt = 9; //$cid.find('li').length - 0;
     // console.log(cid, cnt);
-    let pgnum = 0;
+    // let pgnum = 1;
 
     $('#addData' + cid).on('click', function () {
         console.log('             | #addData' + cid + ' has on clickFn()!!!');

@@ -30,5 +30,9 @@ const tp = {
     introTitle(e) {
         const hasHttp = /http/.test(e.IntroTitle);
         return `${e.IntroTitle && (hasHttp == false) ? `<div class="bigTitle" data-type="IntroTitle">${e.IntroTitle}</div>` : `<!-- 暂无引题 data-docid="${e.DocID}" -->`}`;
-    }
+    },
+    date(e) {
+        let r = e.PubTime.split(' ')[0].split('-');
+        return `${r[0]}年${r[1]}月${r[2]}日`;
+    },
 };

@@ -28,7 +28,7 @@ var cid = [
 // 	isBlank: false
 // },
 {
-    name: '新华网独家连线',
+    name: '精彩连线',
     cid: 11230092,
     nid: 11230411,
     nav: true,
@@ -36,20 +36,20 @@ var cid = [
 }];
 
 if (isDev) {
-    cid[0].cid = 11216706;
-    // cid[1].cid = 11217530;
-    // cid[1].child[0].cid = 11208880;
-    // 	cid[2].cid = 11217531;
-    // 	cid[2].child[3].cid = 11207721;
-    // 	cid[3].cid = 11111888;
-    // 	// cid[4].cid = 11208880;
-    // 	// cid[5].cid = 11207723;
-    // 	// cid[6].cid = 11207721;
-    // 	// cid[0].cid = 11207721;
-    // 	// cid[1].cid = 11207722;
-    // 	// cid[2].cid = 11207723;
-    // 	// cid[3].cid = 11208880;
-    // 	// cid[4].cid = 11208881;
+    cid[0].cid = 11208880;
+    // 	// cid[1].cid = 11217530;
+    // 	// cid[1].child[0].cid = 11208880;
+    // 	// 	cid[2].cid = 11217531;
+    // 	// 	cid[2].child[3].cid = 11207721;
+    // 	// 	cid[3].cid = 11111888;
+    // 	// 	// cid[4].cid = 11208880;
+    // 	// 	// cid[5].cid = 11207723;
+    // 	// 	// cid[6].cid = 11207721;
+    // 	// 	// cid[0].cid = 11207721;
+    // 	// 	// cid[1].cid = 11207722;
+    // 	// 	// cid[2].cid = 11207723;
+    // 	// 	// cid[3].cid = 11208880;
+    // 	// 	// cid[4].cid = 11208881;
 }
 
 var cidMap = function () {
@@ -259,18 +259,24 @@ var tp = {
     introTitle: function introTitle(e) {
         var hasHttp = /http/.test(e.IntroTitle);
         return '' + (e.IntroTitle && hasHttp == false ? '<div class="bigTitle" data-type="IntroTitle">' + e.IntroTitle + '</div>' : '<!-- \u6682\u65E0\u5F15\u9898 data-docid="' + e.DocID + '" -->');
+    },
+    date: function date(e) {
+        var r = e.PubTime.split(' ')[0].split('-');
+        return r[0] + '\u5E74' + r[1] + '\u6708' + r[2] + '\u65E5';
     }
 };
-var pageFn = function pageFn(cid) {
-    // console.log('1:', cid.isOn);
+var pageFn = function pageFn(cid, _ref2) {
+    var cnt = _ref2.cnt,
+        pgnum = _ref2.pgnum;
 
+    // console.log('1:', cid.isOn);
     // if (cid.hasOwnProperty('isOn') == false) {
     console.log('         | pageFn.js:', cid);
     // const $btn = $('#addData');
     // const cid = $cid.attr('data-cid');
-    var cnt = 4; //$cid.find('li').length - 0;
+    // const cnt = 9; //$cid.find('li').length - 0;
     // console.log(cid, cnt);
-    var pgnum = 0;
+    // let pgnum = 1;
 
     $('#addData' + cid).on('click', function () {
         console.log('             | #addData' + cid + ' has on clickFn()!!!');
@@ -310,13 +316,13 @@ var loadContnet = function loadContnet(num, attr, page) {
     });
 };
 
-var loadContnetHandler = function loadContnetHandler(_ref2) {
-    var cid = _ref2.cid,
-        cnt = _ref2.cnt,
-        pgnum = _ref2.pgnum,
-        targetName = _ref2.targetName,
-        attr = _ref2.attr,
-        noAttr = _ref2.noAttr;
+var loadContnetHandler = function loadContnetHandler(_ref3) {
+    var cid = _ref3.cid,
+        cnt = _ref3.cnt,
+        pgnum = _ref3.pgnum,
+        targetName = _ref3.targetName,
+        attr = _ref3.attr,
+        noAttr = _ref3.noAttr;
 
     var _attr = attr ? attr : 62;
     var _noAttr = noAttr ? noAttr : false;
@@ -379,9 +385,9 @@ var getRandomInt = function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 };
 
-var setUrlDom = function setUrlDom(_ref3) {
-    var targetName = _ref3.targetName,
-        url = _ref3.url;
+var setUrlDom = function setUrlDom(_ref4) {
+    var targetName = _ref4.targetName,
+        url = _ref4.url;
 
 
     // if (isDev) {
@@ -552,24 +558,20 @@ var setUrlDom = function setUrlDom(_ref3) {
     // }
 };
 //- listAbsPic mods
-
-var loadDataListItem = function loadDataListItem(_ref4) {
-    var cid = _ref4.cid,
-        cnt = _ref4.cnt,
-        pgnum = _ref4.pgnum,
-        targetName = _ref4.targetName,
-        cbFn = _ref4.cbFn,
-        isBlank = _ref4.isBlank;
-
+var loadDataListItem = function loadDataListItem(_ref5) {
+    var cid = _ref5.cid,
+        cnt = _ref5.cnt,
+        pgnum = _ref5.pgnum,
+        targetName = _ref5.targetName;
 
     // console.log('----------> loadDataListItem() ', cid);
     // console.log(targetName);
-
-    var index = 0;
-    var dom = '';
     // console.log('-------> cnt: ', cnt);
     // console.log('addMore:', pgnum);
     // console.log('ajax:', `http://da.wa.news.cn/nodeart/page?nid=${cid}&pgnum=${pgnum}&cnt=${cnt}&tp=1&orderby=1`);
+    var index = 0;
+    var page = 0;
+    var dom = { 0: [] };
 
     $.ajax({
         url: AJAX_url,
@@ -588,9 +590,7 @@ var loadDataListItem = function loadDataListItem(_ref4) {
             if (data.status == '-1') {
                 $('#addData' + cid).html('暂无更多').addClass('disable');
                 $('html').addClass('isCtlNoContentHeight');
-
                 var msg = msgFn({ cid: cid, pgnum: pgnum, cnt: cnt });
-
                 if (targetName) {
                     $(targetName + ' .isNoContent').html(msg);
                 } else {
@@ -601,35 +601,83 @@ var loadDataListItem = function loadDataListItem(_ref4) {
                     $('html').removeClass('isCtlNoContentHeight');
 
                     data.data.list.map(function (e, i) {
-                        // e.isBlank = isBlank;
-                        index++;
+                        if (e.Attr !== 61) {
 
-                        var aBegin = tp.a.start(e);
-                        var aEnd = tp.a.end(e);
-                        dom += '\n                        <li data-index="' + index + '" data-docid="' + e.DocID + '"' + (e.PicLinks ? '' : 'class="noPic"') + '>\n                            <div class="text">\n                                ' + aBegin + '\n                                    <div class="title">\n                                        ' + (e.Title ? '' + e.Title : '暂无标题') + '\n                                    </div>\n                                    ' + tp.abs(e) + '\n                                ' + aEnd + '\n                            </div>\n                            ' + tp.picNoImgNoPicDom(e) + '\n                        </li>\n                        ';
+                            dom[page].push(e);
+                            if (index < 8) {
+                                index++;
+                            } else {
+                                console.log(page, index);
+                                page++;
+                                if (dom.hasOwnProperty(page) == false) {
+                                    dom[page] = [];
+                                }
+                                index = 0;
+                            }
+                        }
                     });
+
+                    console.log(dom);
+                    // console.log('index:', index);
+                    if (dom[0].length == 9) {
+                        console.log('p1:', dom[0]);
+                        render(targetName, {
+                            dom: dom[0],
+                            cid: cid,
+                            cnt: cnt,
+                            pgnum: pgnum
+                        });
+                    }
                 }
             }
-
-            $('.isLoading').html('').removeClass('isLoading');
-
-            if (targetName) {
-                $(targetName).html('\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                    ' + dom + '\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n                ');
-            } else {
-                $('#addDataListPos' + cid).append('\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                    ' + dom + '\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n                ');
-            }
-
-            if (cbFn) {
-                cbFn();
-            }
-        },
-        error: function error(xhr, ajaxOptions, thrownError) {
-            console.log(xhr, ajaxOptions, thrownError);
-            if (xhr.status == 404) {
-                $('.isLoading').html(thrownError);
-            }
         }
+        // error: function (xhr, ajaxOptions, thrownError) {
+        //     console.log(xhr, ajaxOptions, thrownError);
+        //     if (xhr.status == 404) {
+        //         $('.isLoading').html(thrownError);
+        //     }
+        // },
     });
+};
+
+var render = function render(targetName, _ref6) {
+    var dom = _ref6.dom,
+        cid = _ref6.cid,
+        cnt = _ref6.cnt,
+        pgnum = _ref6.pgnum;
+
+    $('.isLoading').html('').removeClass('isLoading');
+
+    var html = '';
+    /**
+     *  
+        const aBegin = tp.a.start(e);
+        const aEnd = tp.a.end(e);
+        <li data-index="${i}" data-docid="${e.DocID}"${e.PicLinks ? '' : 'class="noPic"'}>
+            ${tp.pic(e)}
+            <div class="text">
+                ${aBegin}
+                    <div class="title">
+                        ${e.Title ? `${e.Title}` : '暂无标题'}
+                    </div>
+                    <!-- ${tp.abs(e)} -->
+                ${aEnd}
+            </div>
+        </li>
+    `;
+     */
+
+    dom.map(function (e, i) {
+        var aBegin = tp.a.start(e);
+        var aEnd = tp.a.end(e);
+        html += '<li data-index="' + i + '" data-docid="' + e.DocID + '"' + (e.PicLinks ? '' : 'class="noPic"') + '>\n            ' + tp.pic(e) + '\n            <div class="text">\n                ' + aBegin + '\n                    <div class="title">\n                        ' + (e.Title ? '' + e.Title : '暂无标题') + '\n                    </div>\n                    <div class="title2">\n                        <div class="date">' + tp.date(e) + '</div>\n                        <div class="more">\u67E5\u770B\u8BE6\u60C5</div>\n                    </div>\n                ' + aEnd + '\n            </div>\n        </li>';
+    });
+
+    if (targetName) {
+        $(targetName).html('\n                <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                ' + html + '\n                <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n            ');
+    } else {
+        $('#addDataListPos' + cid).append('\n                <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                ' + html + '\n                <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n            ');
+    }
 };
 
 // import './mod/memorabilia.js'
@@ -666,12 +714,12 @@ var rotAndHeadlineWithBigTitleNoList_initRot = function rotAndHeadlineWithBigTit
     });
 };
 
-var rotAndHeadlineWithBigTitleNoList = function rotAndHeadlineWithBigTitleNoList(_ref5) {
-    var cid = _ref5.cid,
-        cnt = _ref5.cnt,
-        pgnum = _ref5.pgnum,
-        targetName = _ref5.targetName,
-        rightSideItemMax = _ref5.rightSideItemMax;
+var rotAndHeadlineWithBigTitleNoList = function rotAndHeadlineWithBigTitleNoList(_ref7) {
+    var cid = _ref7.cid,
+        cnt = _ref7.cnt,
+        pgnum = _ref7.pgnum,
+        targetName = _ref7.targetName,
+        rightSideItemMax = _ref7.rightSideItemMax;
 
 
     $.ajax({
@@ -747,116 +795,7 @@ var rotAndHeadlineWithBigTitleNoList = function rotAndHeadlineWithBigTitleNoList
         }
     });
 };
-// @St. 2020-03-31
-
-/*
-targetName > .swiper-wrapper
-targetName > .right
-*/
-
-var rotAndHeadlineNoList_initRot = function rotAndHeadlineNoList_initRot(targetName) {
-    new Swiper(targetName + ' .swiper-container', {
-        loop: true,
-        watchOverflow: true,
-        // autoplay: isDev ? false : true,//可选选项，自动滑动
-        pagination: {
-            el: targetName + ' .swiper-pagination',
-            clickable: true
-        },
-        navigation: {
-            nextEl: targetName + ' .swiper-button-next',
-            prevEl: targetName + ' .swiper-button-prev'
-        }
-    });
-};
-
-var rotAndHeadlineNoList = function rotAndHeadlineNoList(_ref6) {
-    var cid = _ref6.cid,
-        cnt = _ref6.cnt,
-        pgnum = _ref6.pgnum,
-        targetName = _ref6.targetName,
-        rightSideItemMax = _ref6.rightSideItemMax;
-
-
-    $.ajax({
-        url: AJAX_url,
-        data: {
-            // nid: isDev ? 1120310 : cid, // 11203173
-            nid: cid,
-            pgnum: pgnum,
-            cnt: cnt,
-            tp: 1,
-            orderby: 1
-        },
-        dataType: 'JSONP',
-        success: function success(data) {
-            // console.log(data);
-            var dom1 = '';
-            var dom2 = '';
-            var dom3 = '';
-            var dom3Index = 0;
-            // let dom4 = '';
-            // let dom4_index = 0;
-            // let dom4_listMaxNum = 8;
-
-            if (data.status == '-1') {
-                var msg = msgFn({ cid: cid, pgnum: pgnum, cnt: cnt });
-                $(targetName + ' .isNoContent').html(msg);
-            } else {
-                if (data.data.list.length > 0) {
-                    data.data.list.map(function (e, i) {
-                        // console.log(e.PubTime);
-
-                        // if (e.Attr == 62) {
-                        //     dom1 = `
-                        //         <!-- topBigTitle START -->
-                        //         ${e.LinkUrl ? `<h1><a href="${e.LinkUrl}" target="_blank" class="link external">` : '<!-- 暂无主标题链接 -->'}
-                        //         ${e.Title ? e.Title : '<!-- 暂无主标题 -->'}
-                        //         ${e.LinkUrl ? '</a></h1 >' : '<!-- 暂无主标题链接 -->'}
-                        //         ${e.Abstract ? `<div class="absBox">${e.Abstract}</div>` : '<!-- 暂无摘要 -->'}
-                        //         <!-- topBigTitle END -->`;
-                        // }
-
-                        if (e.Attr == 61) {
-                            dom2 += '\n                                <div class="swiper-slide item" data-docid="' + e.DocID + '">\n                                    ' + tp.pic(e, i) + '\n                                    <div class="title">\n                                        <div class="text">\n                                            ' + tp.title(e, i) + '\n                                        </div>\n                                    </div>\n                                </div>\n                            ';
-                        }
-
-                        if (e.Attr == 63 && dom3Index < rightSideItemMax) {
-                            dom3Index++;
-                            dom3 += '\n                                <h2 class="tiny-title" data-docid="' + e.DocID + '">\n                                    ' + tp.title(e, i) + '\n                                </h2>\n                                ' + tp.abs(e) + '\n                            ';
-                            if (dom3Index <= rightSideItemMax - 1) {
-                                dom3 += '<div class="line"></div>';
-                            }
-                        }
-                    });
-                }
-            }
-
-            // if (dom1) {
-            //     $(targetName + ' .topBigTitle').html(dom1);
-            // }
-
-            if (dom2) {
-                $(targetName + ' .swiper-wrapper').html(dom2);
-                rotAndHeadlineNoList_initRot(targetName);
-            }
-
-            if (dom2 || dom3) {
-                $('.col1 .right').html('\n                    ' + dom3 + '\n                ');
-            } else {
-                $('.col1 .area').hide();
-                // $('.col1 .more').hide();
-            }
-        },
-        error: function error(xhr, ajaxOptions, thrownError) {
-            console.log('error:', xhr, ajaxOptions, thrownError);
-            if (xhr.status == 404) {
-                $('.topBigTitle .isNoContent' + cid).html(thrownError);
-                $('.col1 .isNoContent' + cid).html(thrownError);
-            }
-        }
-    });
-};
+// import './mod/rotAndHeadlineNoList.js'
 // import './mod/rotAndHeadline_ctlHeight.js'
 // import './mod/rotBig.js'
 
@@ -866,69 +805,63 @@ var rotAndHeadlineNoList = function rotAndHeadlineNoList(_ref6) {
 // import './mod/rotPicABigAndMoreTiny.js'
 // import './mod/picAndList.js'
 // import './mod/picList.js'
-// let rotBigInitRot_swiperEl = false;
-var addGlleryThumbs = function addGlleryThumbs(targetName) {
-    var $target = $(targetName + ' .gallery-top');
-    var $imgs = $target.find('.pic');
-    var temp = '';
-    $imgs.each(function (i, e) {
-        temp += '\n        <div class="swiper-slide item">\n            <div class="pic">';
-        var $e = $(e);
-        // console.log(i, $e);
-        var $img = $e.find('img');
-        var src = $img.attr('src');
-        if (src) {
-            temp += '<img src="' + src + '">';
-        }
-        temp += '\n            </div>\n        </div>';
-    });
+// import './mod/rotGallery.js'
+// import './mod/picTitleAbsAndList.js'
+// import './mod/titleAbs.js'
 
-    $target.after('\n        <div class="swiper-container gallery-thumbs">\n            <div class="swiper-wrapper">\n                ' + temp + '\n            </div>\n        </div>\n    ');
-};
+var rotBox61InitRot = function rotBox61InitRot(targetName) {
+    var mySwiper = false;
+    if (mySwiper == false) {
 
-var initGllery = function initGllery(targetName) {
+        console.log('rotBox61InitRot targetName:', targetName);
 
-    if (isPc) {
-        addGlleryThumbs(targetName);
+        mySwiper = new Swiper(targetName + ' .swiper-container', {
+            loop: true,
+            speed: 3000,
+            autoplay: {
+                delay: 4000
+            },
+            // freeMode: true,
+            watchOverflow: true,
+            // slidesPerView: 3,
+            // slidesPerGroup: 3,
+            // slidesPerColumn: 2,
+            // spaceBetween: 20,
+            pagination: {
+                el: targetName + ' .swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: targetName + ' .swiper-button-next',
+                prevEl: targetName + ' .swiper-button-prev'
+            },
+            effect: 'coverflow',
+            centeredSlides: true,
+            coverflowEffect: {
+                rotate: 30,
+                stretch: 40,
+                depth: 80,
+                modifier: 3,
+                slideShadows: false
+            }
+            // slidesPerView: 3,
+            // centeredSlides: true,
+        });
     }
-
-    var galleryThumbs = new Swiper(targetName + ' .gallery-thumbs', {
-        direction: 'vertical',
-        spaceBetween: 10,
-        slidesPerView: 3,
-        // loop: true,
-        // freeMode: true,
-        loopedSlides: 3, //looped slides should be the same
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true
-    });
-
-    var galleryTop = new Swiper(targetName + ' .gallery-top', {
-        direction: isPc ? 'vertical' : 'horizontal',
-        // autoplay: true, //isPc ? true : false
-        spaceBetween: isPc ? 10 : 0,
-        loop: true,
-        loopedSlides: isPc ? 3 : 0, //looped slides should be the same
-        navigation: {
-            nextEl: targetName + ' .swiper-button-next',
-            prevEl: targetName + ' .swiper-button-prev'
-        },
-        thumbs: {
-            swiper: isPc ? galleryThumbs : null
-        }
-    });
 };
 
-var rotGallery = function rotGallery(_ref7) {
-    var cid = _ref7.cid,
-        cnt = _ref7.cnt,
-        pgnum = _ref7.pgnum,
-        targetName = _ref7.targetName,
-        hideName = _ref7.hideName;
+var rotBox61 = function rotBox61(_ref8) {
+    var cid = _ref8.cid,
+        cnt = _ref8.cnt,
+        pgnum = _ref8.pgnum,
+        targetName = _ref8.targetName;
 
-    // console.log('----///------> rotBig() ', cid);
+    console.log('----///------> rotBox61() ', cid);
 
     var dom = '';
+    // console.log('-------> cnt: ', cnt);
+    // console.log('addMore:', pgnum);
+    // console.log('ajax:', `http://da.wa.news.cn/nodeart/page?nid=${cid}&pgnum=${pgnum}&cnt=${cnt}&tp=1&orderby=1`);
     var index = 0;
 
     $.ajax({
@@ -951,25 +884,36 @@ var rotGallery = function rotGallery(_ref7) {
             } else {
                 if (data.data.list.length > 0) {
                     data.data.list.map(function (e, i) {
-                        index++;
-                        var aBegin = tp.a.start(e, index);
-                        var aEnd = tp.a.end(e, index);
-                        // ${tp.picNoImgNoPicDom(e, index)}
 
-                        dom += '\n                            <div class="swiper-slide item">\n                                <li data-index="' + index + '" data-docid="' + e.DocID + '"' + (e.PicLinks ? '' : 'class="noPic"') + '>\n                                ' + tp.pic(e, index) + '\n                                <div class="title">\n                                        <div class="text">\n                                            ' + tp.title(e, index) + '\n                                        </div>\n                                    </div>\n                                </li>\n                            </div>\n                        ';
+                        console.log(e.Attr);
+
+                        if (e.Attr == 61) {
+                            if (index < 3) {
+                                dom += '<div class="swiper-slide item-rightPicTitleAbs">\n                                    <div class="item-rightPicTitleAbs-in">\n                                        ' + tp.pic(e) + '\n                                        <div class="textBox">\n                                            <div class="title">\n                                                <div class="text-in">\n                                                    ' + tp.title(e) + '\n                                                </div>\n                                            </div>\n                                            <div class="abs">\n                                                <div class="text-in">\n                                                    ' + tp.abs(e) + '\n                                                </div>\n                                            </div>\n                                            <a class="link external item-rightPicTitleAbs-more" herf="' + e.LinkUrl + '">\u8BE6\u60C5</a>\n                                        </div>\n                                    </div>\n                                </div>';
+
+                                index++;
+                            }
+                        }
                     });
                 }
             }
 
-            if (targetName && dom !== '') {
-                $(targetName + ' .swiper-wrapper').html('\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                    ' + dom + '\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n                ');
+            // $('.isLoadingTxt')
+            //     .html('')
+            //     .removeClass('isLoadingTxt');
 
-                setTimeout(function () {
-                    initGllery(targetName);
-                }, 600);
-            } else if (hideName) {
-                $(hideName).hide();
+            if (targetName) {
+                $(targetName + ' .swiper-wrapper').html('\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                    ' + dom + '\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n                ');
+                rotBox61InitRot(targetName);
             }
+            // else {
+            //     $(`#addDataListPos${cid}`)
+            //         .append(`
+            //         <!-- cid: ${cid}, cnt: ${cnt}, pgnum: ${pgnum} START -->
+            //         ${dom}
+            //         <!-- cid: ${cid}, cnt: ${cnt}, pgnum: ${pgnum} END -->
+            //     `);
+            // }
         },
         error: function error(xhr, ajaxOptions, thrownError) {
             console.log(xhr, ajaxOptions, thrownError);
@@ -979,234 +923,33 @@ var rotGallery = function rotGallery(_ref7) {
         }
     });
 };
-// import './mod/picTitleAbsAndList.js'
-// import './mod/titleAbs.js'
 
 // import './mod/bigTitle.js'
 var addDataForHomepage = function addDataForHomepage(cid) {
-    // console.log('------> run addDataForHomepage()!!!');
+    rotBox61({
+        cid: cid['0'].cid,
+        cnt: 20,
+        pgnum: 1,
+        targetName: '#rotBox61'
+    });
 
-    // rotAndHeadlineNoList({
-    //     cid: cid[0].cid,
-    //     cnt: 20,
-    //     pgnum: 1,
-    //     targetName: '#col0Box',
-    //     hideName: null,
-    //     hasCol: 0,
-    //     rightSideItemMax: 3, // 右侧最大数目
-    // });
+    loadDataListItem({
+        cid: cid[0].cid,
+        cnt: 36,
+        pgnum: 1,
+        targetName: '#addDataListPos'
+    });
 
-
-    // loadContnetHandler({
-    //     cid: cid[1].cid,
-    //     cnt: 10,
-    //     pgnum: 1,
-    //     targetName: '[data-add="addDataPos"]',
-    //     // attr: 61,
-    //     noAttr: true,
-    // });
-
-    // loadContent(1, 'noAttr', page);
-
-    // rotBig({
-    //     cid: cid[1].cid,
-    //     cnt: 6,
-    //     pgnum: 1,
-    //     targetName: '#rotBigOpenWidth',
-    //     hideName: null,
-    //     rotBigInitRotCtl: {
-    //         loop: true,
-    //         spaceBetween: 0,
-    //     }
-    // });
-
-    // rotGallery({
-    //     cid: cid[2].cid,
-    //     cnt: 10,
-    //     pgnum: 1,
-    //     targetName: '#rotGalleryPos',
-    //     hideName: '#rotGalleryPos'
-    // });
-
-    // rotGallery({
-    //     cid: cid[4].cid,
-    //     cnt: 10,
-    //     pgnum: 1,
-    //     targetName: '#picList4BoxPosIn1', // .pic & ul.list
-    //     hasAbs: true,
-    //     // hideName: '#picList4'
-    // });
-
-    // rotGallery({
-    //     cid: cid[5].cid,
-    //     cnt: 10,
-    //     pgnum: 1,
-    //     targetName: '#picList4BoxPosIn2', // .pic & ul.list
-    //     hasAbs: true,
-    //     // hideName: '#picList4'
-    // });
-
-    // rotGallery({
-    //     cid: cid[6].cid,
-    //     cnt: 10,
-    //     pgnum: 1,
-    //     targetName: '#picList4BoxPosIn3', // .pic & ul.list
-    //     hasAbs: true,
-    //     // hideName: '#picList4'
-    // });
-
-    // itemListLeftandRight({
-    //     cid: cid['关注·征迁群众'].cid,
-    //     cnt: 3,
-    //     pgnum: 1,
-    //     targetName: '#navBtn-gz'
-    // });
-
-    // rotPicTitleAbs({
-    //     cid: cid['品味·雄安民俗'].cid,
-    //     cnt: 7,
-    //     pgnum: 1,
-    //     targetName: '#rotPicTitleAbs',
-    //     targetNameSidebar: '#sidebar'
-    // });
-
-    // // initRotPicTitleAbs('#rotPicTitleAbs');
-
-
-    // picTitleAbsAndList({
-    //     cid: cid['展示·雄安这一年'].cid,
-    //     cnt: 20,
-    //     pgnum: 1,
-    //     targetName: '#picTitleAbsAndList',
-    //     hideName: null,
-    // });
-
-
-    // picList({
-    //     cid: cid['精彩回顾'].cid,
-    //     cnt: 12,
-    //     pgnum: 1,
-    //     targetName: '#picList', // .pic & ul.list
-    //     hideName: '#picList'
-    // });
-
-
-    // rotAndHeadline(cid['文化新闻眼'].cid);
-
-    // rotBigRound({
-    //     cid: cid['雄安非遗'].cid,
-    //     cnt: 6,
-    //     pgnum: 1,
-    //     boxName: '#rotBigRound',
-    //     cbFn: function () {
-    //         console.log('----> run cbFn');
-
-    //         rotPicABigAndMoreTiny({
-    //             cid: cid['多彩雄安'].cid,
-    //             rotName: '#rotPicABigAndMoreTiny',
-    //             hideName: '.rotPicABigAndMoreTiny-autoHide'
-    //         });
-
-    //         picAndList({
-    //             cid: cid['白洋淀故事'].cid,
-    //             cnt: 5,
-    //             pgnum: 1,
-    //             targetName: '#addData-ting', // .pic & ul.list
-    //         });
-
-    //         picAndList({
-    //             cid: cid['每日一诗'].cid,
-    //             cnt: 5,
-    //             pgnum: 1,
-    //             targetName: '#addData-shang', // .pic & ul.list
-    //         });
-
-
-    //         rot3BoxNoPic({
-    //             cid: cid['红色基因'].cid,
-    //             cnt: 21,
-    //             targetName: '#rot3BoxNoPic',
-    //         });
-
-
-    //         itemListLeftandRight({
-    //             cid: cid['理论创新'].cid,
-    //             cnt: 4,
-    //             pgnum: 1,
-    //             targetName: '#itemListLeftandRight2'
-    //         });
-
-
-    //         loadDataListItem({
-    //             cid: cid['雄安书苑'].cid,
-    //             cnt: 3,
-    //             pgnum: 1,
-    //             targetName: '#spBox-yue .spBox-yue-listBox',
-    //             // cbFn: function () {
-
-    //             // },
-    //             // isBlank: true,
-    //         });
-    //     }
-    // });
-
-
-    // rotBox({
-    //     cid: cid['雄安新区最具地缘特色旅游美食'].cid,
-    //     cnt: 18,
-    //     pgnum: 1,
-    //     rotTargetName: '#rotBox1'
-    // });
-
-    // rotBox({
-    //     cid: cid['雄安新区最具文化底蕴旅游美食'].cid,
-    //     cnt: 18,
-    //     pgnum: 1,
-    //     rotTargetName: '#rotBox2'
-    // });
-
-    // rotBox({
-    //     cid: cid['雄安新区旅游美食优秀奖'].cid,
-    //     cnt: 18,
-    //     pgnum: 1,
-    //     rotTargetName: '#rotBox3'
-    // });
-
-
-    // loadDataCol1(cid['新闻聚焦'].cid);
-    // // loadDataRot2(cid['看建雄安'].cid);
-    // // loadDataRotBoxBox(cid['看建雄安'].cid, '#rotPicTitleAbs');
-
-    // rotAndHeadline(cid['要闻聚焦'].cid);
-
-    // loadDataListItem2({
-    //     cid: cid['建设者风采'].cid,
-    //     cnt: 6,
-    //     pgnum: 1,
-    //     targetName: '#items-col3',
-    // });
-
-    // loadDataListItem3({
-    //     cid: cid['招标公告'].cid,
-    //     cnt: 12,
-    //     pgnum: 1,
-    //     targetName: '#items-col4',
-    // });
-
-    // loadMemorabilia(cid['重要时刻'].cid);
-
-    // loadDataRot3_1(cid['参建单位'].cid);
-
-    // loadGushi(cid['雄安建设者·说出你的故事'].cid);
-
-    // loadDataRot3(cid['典型风采'].cid);
-
-    // loadDataListItem({
-    //     cid: cid['党建先锋'].cid,
-    //     cnt: 4,
-    //     pgnum: 1,
-    //     targetName: '#items-col3',
-    // });
+    // // 设置数据写入 id
+    // const currentCid = cid[0].cid;
+    // const $id = $$('#addDataListPos');
+    // $id.attr('id', 'addDataListPos' + currentCid);
+    // $id.attr('data-cid', currentCid);
+    // // 暂无内容位置 (只能替换 class 名，新增会导致多个class)
+    // $$('.isNoContent').attr('class', 'isNoContent isNoContent' + currentCid);
+    // // 查看更多按钮
+    // $$('#addData').attr('id', 'addData' + currentCid);
+    // pageFn(cid[0].cid, { cnt: 36 });
 };
 
 // import './setHomepageCol.js'

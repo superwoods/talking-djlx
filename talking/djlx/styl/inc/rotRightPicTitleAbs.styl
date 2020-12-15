@@ -1,0 +1,246 @@
+
+rotRightPicTitleAbsItemBoxHeight = 385px
+
+.rotRightPicTitleAbs
+.rotRightPicTitleAbsBox
+.rotRightPicTitleAbs-container
+.rotRightPicTitleAbsBg
+    width: 1200px
+    height 505px
+    margin: 0 auto
+
+.rotRightPicTitleAbs
+    margin-top: 40px
+    background-image: url(rotBg.png)
+    background-repeat: no-repeat
+    background-position: center center
+
+.rotRightPicTitleAbsBox
+    position: relative
+    z-index: 10
+
+.rotRightPicTitleAbs-container
+    .item-rightPicTitleAbs
+        .item-rightPicTitleAbs-in // .item-rightPicTitleAbs-in
+            display: flex
+            justify-content: space-around
+            padding: 30px
+            // background: #ffffff
+            margin: 0 50px
+
+        picHeight = rotRightPicTitleAbsItemBoxHeight
+        picWidth = 686px
+
+        .pic
+            height picHeight
+            width: picWidth
+            // border-radius: 4px
+            overflow hidden
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0.588px 0.809px 7.6px 0.4px rgba(0, 117, 248, 0.4);
+            position: absolute
+            border #ffffff 12px solid
+            border-left-width: 13px
+            border-right-width: @border-left-width
+            position: absolute
+            left 110px
+            top: 50%
+            transform: translateY(-50%)
+            margin-top: 12px
+
+            img
+                width: auto
+                height picHeight
+
+        .textBox
+            flex: 1 0
+            margin-right: 40px
+            display: flex
+            flex-direction: column
+            justify-content: flex-start
+            position: absolute
+            right: 78px
+            top: 50%
+            transform: translateY(-50%)
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0.588px 0.809px 7.6px 0.4px rgba(51, 191, 255, 0.93);
+            width: 212px
+            height: 278px
+            overflow hidden
+  
+
+            .title
+                font-size: 18px
+                line-height: 22px
+                font-weight: 300
+                display: inline-block
+                padding-top: 28px
+
+                &:after
+                    content: ''
+                    width: 70px
+                    height 6px
+                    background: #0075f8
+                    display: block
+
+                a
+                    color: #0075f8
+                
+            .text-in
+                padding: 10px 12px 10px 16px
+
+            .abs
+                font-size: 13px
+                line-height: 20px
+                height: @line-height * 4.6
+                color: #767676
+
+            .item-rightPicTitleAbs-more
+                color: #0075f8
+                background-image: url(icon-more.png)
+                background-repeat: no-repeat
+                background-position: 0 bottom
+                display: block
+                align-self: flex-end
+                padding-top: 10px
+                padding-left: 28px
+                padding-right: 16px
+                font-weight: 400
+
+.rotRightPicTitleAbs-prev
+.rotRightPicTitleAbs-next
+    color: var(--moo-color)
+    outline: none
+    overflow hidden
+    text-indent: -888px
+    width: 40px
+    height @width
+    border-radius: 100%
+    background-repeat: no-repeat
+    background-position: center center
+    top: 50%
+    transform: translateY(-50%)
+
+.rotRightPicTitleAbs-prev
+    background-image: url(icon-prev.png)
+
+.rotRightPicTitleAbs-next
+    background-image: url(icon-next.png)
+
+
+// .rotRightPicTitleAbsBg
+//     background-image: url(rotBg.png)
+//     background-repeat: no-repeat
+//     background-position: 0 bottom
+//     // width: 100%
+//     // height 100%
+//     position: absolute
+//     z-index 1
+//     top: 0
+//     left 0
+    // transform: translate(-50%, 0)
+
+// .rotRightPicTitleAbs-pagination
+//     left: 50%
+//     transform: translateX(-50%)
+//     // width: 50%
+//     // border: 1px solid #ffffff
+
+//     .swiper-pagination-bullet
+//         outline: none
+//         width: 60px
+//         height 4px
+//         border-radius: (@height / 2)
+//         background-color: #333333
+//         // opacity 1 
+
+//     .swiper-pagination-bullet-active
+//         background-color: var(--moo-color)
+
+//     .swiper-pagination-bullet+.swiper-pagination-bullet
+//         margin-left: 6px
+
+
+
+.is-mobile
+    .rotRightPicTitleAbsBoxBox
+        padding: 20px 0
+        overflow hidden
+    
+        rotRightPicTitleAbsBoxHeight = 600px
+
+        .item-rightPicTitleAbs-in
+            flex-direction: column-reverse
+            justify-content: flex-start
+            width: 100%
+            height 100%
+            margin: 0
+            padding: 0
+
+        .rotRightPicTitleAbsBox
+        .rotRightPicTitleAbs
+            width 100%
+            height rotRightPicTitleAbsBoxHeight
+
+        .rotRightPicTitleAbs
+            overflow hidden
+
+        .rotRightPicTitleAbs-prev
+        .rotRightPicTitleAbs-next
+            display: none
+
+        .swiper-pagination-bullet
+            width: 20px
+
+        .swiper-pagination-bullet+.swiper-pagination-bullet
+            margin-left: 3px
+
+        .mobile-itemBox
+            display: flex
+            justify-content: space-between
+            height rotRightPicTitleAbsBoxHeight
+
+        .textBox
+            flex: 1 0
+            position relative
+            width: 100%
+            height auto
+            margin: 0
+            justify-content: flex-start
+            padding-top: 20px
+
+        .textBox-in
+            margin: 0 auto
+            width: 90%
+            height auto
+
+        .title
+            position relative
+
+        .pic
+            // pic()
+            width: 100%
+            height 300px
+            overflow hidden
+
+            a
+                width: 100%
+                height 100%
+
+            img
+                width: auto
+                height 100%
+
+        .title
+            // title()
+            width 100%
+            font-size: 16px
+            text-align: center
+
+            // &
+            // & a 
+                // color #FFF
+                
+            // .text
+                // text()
+                // 

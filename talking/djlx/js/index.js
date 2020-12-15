@@ -35,7 +35,7 @@ const AJAX_url = 'http://da.wa.news.cn/nodeart/page';
 // import './mod/rotAndHeadline.js'
 // import './mod/rotAndHeadlineWithBigTitle.js'
 // @import './mod/rotAndHeadlineWithBigTitleNoList.js'
-@import './mod/rotAndHeadlineNoList.js'
+// import './mod/rotAndHeadlineNoList.js'
 // import './mod/rotAndHeadline_ctlHeight.js'
 // import './mod/rotBig.js'
 
@@ -45,9 +45,12 @@ const AJAX_url = 'http://da.wa.news.cn/nodeart/page';
 // import './mod/rotPicABigAndMoreTiny.js'
 // import './mod/picAndList.js'
 // import './mod/picList.js'
-@import './mod/rotGallery.js'
+// import './mod/rotGallery.js'
 // import './mod/picTitleAbsAndList.js'
 // import './mod/titleAbs.js'
+
+@import './mod/rotBox61.js'
+
 
 // import './mod/bigTitle.js'
 @import './addDataForHomepage.js'
