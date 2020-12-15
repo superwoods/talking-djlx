@@ -364,6 +364,7 @@ a:hover {
   font-weight: 300;
   display: inline-block;
   padding-top: 28px;
+  font-weight: 400;
 }
 .rotRightPicTitleAbs-container .item-rightPicTitleAbs .textBox .title:after {
   content: '';
