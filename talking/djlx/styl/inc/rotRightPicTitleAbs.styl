@@ -154,13 +154,14 @@ rotRightPicTitleAbsItemBoxHeight = 385px
     .rotRightPicTitleAbsBox
     .rotRightPicTitleAbs-container
         width: 100%
-        height 505px
+        height 465px
         margin: 0 auto
 
     .rotRightPicTitleAbs
         background: #f6fbfe
-        padding: 12px
+        padding: 0 12px
         width: 94%
+        position relative
 
     .rotRightPicTitleAbsBox
         .swiper-pagination-bullet
@@ -177,12 +178,17 @@ rotRightPicTitleAbsItemBoxHeight = 385px
 
             .textBox
                 flex: 1 0
-                position relative
+                position absolute
                 width: 100%
                 height auto
                 margin: 0
                 justify-content: flex-start
-                padding-top: 20px
+                padding-top: 0
+                top: 234px
+                left 0
+                right auto
+                transform: none
+                height 465px - 272px
 
             .textBox-in
                 margin: 0 auto
@@ -191,14 +197,16 @@ rotRightPicTitleAbsItemBoxHeight = 385px
 
             .title
                 position relative
+                padding-top: 16px
 
             .pic
-                // pic()
                 width: 100%
                 height 220px
                 overflow hidden
                 border: 0
                 left 0
+                top: 0
+                transform: none
 
                 &:after
                     display: none 
@@ -210,8 +218,24 @@ rotRightPicTitleAbsItemBoxHeight = 385px
                     width: auto
                     height 100%
 
-            .title
-                // title()
-                width 100%
-                font-size: 16px
-                text-align: center
+            .abs
+                height auto
+
+                .text-in
+                    padding-bottom: 0
+
+            .item-rightPicTitleAbs-more
+                position: absolute
+                bottom: 14px
+                right: 10px
+                // color: #0075f8
+                // background-image: url(icon-more.png)
+                // background-repeat: no-repeat
+                // background-position: 0 bottom
+                // display: block
+                // align-self: flex-end
+                // padding-top: 10px
+                // padding-left: 28px
+                // padding-right: 16px
+                // font-weight: 400
+                

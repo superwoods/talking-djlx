@@ -50,7 +50,7 @@ const addDataForHomepage = (cid) => {
                     // slidesPerView: 3,
                     // slidesPerGroup: 3,
                     // slidesPerColumn: 2,
-                    // spaceBetween: 20,
+                    spaceBetween: 20,
                     pagination: {
                         el: targetName + ' .swiper-pagination',
                         clickable: true,

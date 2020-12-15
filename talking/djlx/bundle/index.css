@@ -439,13 +439,14 @@ a:hover {
 .is-mobile .rotRightPicTitleAbsBox,
 .is-mobile .rotRightPicTitleAbs-container {
   width: 100%;
-  height: 505px;
+  height: 465px;
   margin: 0 auto;
 }
 .is-mobile .rotRightPicTitleAbs {
   background: #f6fbfe;
-  padding: 12px;
+  padding: 0 12px;
   width: 94%;
+  position: relative;
 }
 .is-mobile .rotRightPicTitleAbsBox .swiper-pagination-bullet {
   width: 30px;
@@ -458,12 +459,17 @@ a:hover {
 }
 .is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .textBox {
   flex: 1 0;
-  position: relative;
+  position: absolute;
   width: 100%;
   height: auto;
   margin: 0;
   justify-content: flex-start;
-  padding-top: 20px;
+  padding-top: 0;
+  top: 234px;
+  left: 0;
+  right: auto;
+  transform: none;
+  height: 193px;
 }
 .is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .textBox-in {
   margin: 0 auto;
@@ -472,6 +478,7 @@ a:hover {
 }
 .is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .title {
   position: relative;
+  padding-top: 16px;
 }
 .is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .pic {
   width: 100%;
@@ -479,6 +486,8 @@ a:hover {
   overflow: hidden;
   border: 0;
   left: 0;
+  top: 0;
+  transform: none;
 }
 .is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .pic:after {
   display: none;
@@ -491,10 +500,16 @@ a:hover {
   width: auto;
   height: 100%;
 }
-.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .title {
-  width: 100%;
-  font-size: 16px;
-  text-align: center;
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .abs {
+  height: auto;
+}
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .abs .text-in {
+  padding-bottom: 0;
+}
+.is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .item-rightPicTitleAbs-more {
+  position: absolute;
+  bottom: 14px;
+  right: 10px;
 }
 .area {
   width: 1200px;
@@ -1775,4 +1790,32 @@ a:hover .itemsColTiny {
   background-image: url("icon-view.png");
   background-position: 0 center;
   background-repeat: no-repeat;
+}
+.is-mobile .page-content {
+  overflow-x: hidden;
+}
+.is-mobile .topBox {
+  height: auto;
+  padding: 16px 18px 6px;
+  margin-bottom: 10px;
+}
+.is-mobile .topBox-in img {
+  height: 50px;
+}
+.is-mobile .rightBox {
+  display: none;
+}
+.is-mobile .itemsColSpBg {
+  background-position: 54% center;
+}
+.is-mobile .area1 .list {
+  width: 100%;
+  display: block;
+}
+.is-mobile .area1 .list li {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.is-mobile .isNoContent.isNoContent {
+  margin-bottom: 20px;
 }
