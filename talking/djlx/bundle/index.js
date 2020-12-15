@@ -557,128 +557,8 @@ var setUrlDom = function setUrlDom(_ref4) {
     //         `);
     // }
 };
-//- listAbsPic mods
-var loadDataListItem = function loadDataListItem(_ref5) {
-    var cid = _ref5.cid,
-        cnt = _ref5.cnt,
-        pgnum = _ref5.pgnum,
-        targetName = _ref5.targetName;
+// import './mod/loadDataListItem.js'
 
-    // console.log('----------> loadDataListItem() ', cid);
-    // console.log(targetName);
-    // console.log('-------> cnt: ', cnt);
-    // console.log('addMore:', pgnum);
-    // console.log('ajax:', `http://da.wa.news.cn/nodeart/page?nid=${cid}&pgnum=${pgnum}&cnt=${cnt}&tp=1&orderby=1`);
-    var index = 0;
-    var page = 0;
-    var dom = { 0: [] };
-
-    $.ajax({
-        url: AJAX_url,
-        data: {
-            // nid: isDev ? 11207721 : cid, // 11203173
-            nid: cid,
-            pgnum: pgnum,
-            cnt: cnt,
-            tp: 1,
-            orderby: 1
-            // type: 'GET',
-        },
-        dataType: 'JSONP',
-        success: function success(data) {
-            // console.log(data);
-            if (data.status == '-1') {
-                $('#addData' + cid).html('暂无更多').addClass('disable');
-                $('html').addClass('isCtlNoContentHeight');
-                var msg = msgFn({ cid: cid, pgnum: pgnum, cnt: cnt });
-                if (targetName) {
-                    $(targetName + ' .isNoContent').html(msg);
-                } else {
-                    $('.isNoContent' + cid).html(msg);
-                }
-            } else {
-                if (data.data.list.length > 0) {
-                    $('html').removeClass('isCtlNoContentHeight');
-
-                    data.data.list.map(function (e, i) {
-                        if (e.Attr !== 61) {
-
-                            dom[page].push(e);
-                            if (index < 8) {
-                                index++;
-                            } else {
-                                console.log(page, index);
-                                page++;
-                                if (dom.hasOwnProperty(page) == false) {
-                                    dom[page] = [];
-                                }
-                                index = 0;
-                            }
-                        }
-                    });
-
-                    console.log(dom);
-                    // console.log('index:', index);
-                    if (dom[0].length == 9) {
-                        console.log('p1:', dom[0]);
-                        render(targetName, {
-                            dom: dom[0],
-                            cid: cid,
-                            cnt: cnt,
-                            pgnum: pgnum
-                        });
-                    }
-                }
-            }
-        }
-        // error: function (xhr, ajaxOptions, thrownError) {
-        //     console.log(xhr, ajaxOptions, thrownError);
-        //     if (xhr.status == 404) {
-        //         $('.isLoading').html(thrownError);
-        //     }
-        // },
-    });
-};
-
-var render = function render(targetName, _ref6) {
-    var dom = _ref6.dom,
-        cid = _ref6.cid,
-        cnt = _ref6.cnt,
-        pgnum = _ref6.pgnum;
-
-    $('.isLoading').html('').removeClass('isLoading');
-
-    var html = '';
-    /**
-     *  
-        const aBegin = tp.a.start(e);
-        const aEnd = tp.a.end(e);
-        <li data-index="${i}" data-docid="${e.DocID}"${e.PicLinks ? '' : 'class="noPic"'}>
-            ${tp.pic(e)}
-            <div class="text">
-                ${aBegin}
-                    <div class="title">
-                        ${e.Title ? `${e.Title}` : '暂无标题'}
-                    </div>
-                    <!-- ${tp.abs(e)} -->
-                ${aEnd}
-            </div>
-        </li>
-    `;
-     */
-
-    dom.map(function (e, i) {
-        var aBegin = tp.a.start(e);
-        var aEnd = tp.a.end(e);
-        html += '<li data-index="' + i + '" data-docid="' + e.DocID + '"' + (e.PicLinks ? '' : 'class="noPic"') + '>\n            ' + tp.pic(e) + '\n            <div class="text">\n                ' + aBegin + '\n                    <div class="title">\n                        ' + (e.Title ? '' + e.Title : '暂无标题') + '\n                    </div>\n                    <div class="title2">\n                        <div class="date">' + tp.date(e) + '</div>\n                        <div class="more">\u67E5\u770B\u8BE6\u60C5</div>\n                    </div>\n                ' + aEnd + '\n            </div>\n        </li>';
-    });
-
-    if (targetName) {
-        $(targetName).html('\n                <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                ' + html + '\n                <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n            ');
-    } else {
-        $('#addDataListPos' + cid).append('\n                <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                ' + html + '\n                <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n            ');
-    }
-};
 
 // import './mod/memorabilia.js'
 // import './mod/rotBigRound.js'
@@ -714,12 +594,12 @@ var rotAndHeadlineWithBigTitleNoList_initRot = function rotAndHeadlineWithBigTit
     });
 };
 
-var rotAndHeadlineWithBigTitleNoList = function rotAndHeadlineWithBigTitleNoList(_ref7) {
-    var cid = _ref7.cid,
-        cnt = _ref7.cnt,
-        pgnum = _ref7.pgnum,
-        targetName = _ref7.targetName,
-        rightSideItemMax = _ref7.rightSideItemMax;
+var rotAndHeadlineWithBigTitleNoList = function rotAndHeadlineWithBigTitleNoList(_ref5) {
+    var cid = _ref5.cid,
+        cnt = _ref5.cnt,
+        pgnum = _ref5.pgnum,
+        targetName = _ref5.targetName,
+        rightSideItemMax = _ref5.rightSideItemMax;
 
 
     $.ajax({
@@ -809,133 +689,185 @@ var rotAndHeadlineWithBigTitleNoList = function rotAndHeadlineWithBigTitleNoList
 // import './mod/picTitleAbsAndList.js'
 // import './mod/titleAbs.js'
 
-var rotBox61InitRot = function rotBox61InitRot(targetName) {
-    var mySwiper = false;
-    if (mySwiper == false) {
+// import './mod/rotBox61.js'
 
-        console.log('rotBox61InitRot targetName:', targetName);
-
-        mySwiper = new Swiper(targetName + ' .swiper-container', {
-            loop: true,
-            speed: 3000,
-            autoplay: {
-                delay: 4000
-            },
-            // freeMode: true,
-            watchOverflow: true,
-            // slidesPerView: 3,
-            // slidesPerGroup: 3,
-            // slidesPerColumn: 2,
-            // spaceBetween: 20,
-            pagination: {
-                el: targetName + ' .swiper-pagination',
-                clickable: true
-            },
-            navigation: {
-                nextEl: targetName + ' .swiper-button-next',
-                prevEl: targetName + ' .swiper-button-prev'
-            },
-            effect: 'coverflow',
-            centeredSlides: true,
-            coverflowEffect: {
-                rotate: 30,
-                stretch: 40,
-                depth: 80,
-                modifier: 3,
-                slideShadows: false
-            }
-            // slidesPerView: 3,
-            // centeredSlides: true,
-        });
-    }
-};
-
-var rotBox61 = function rotBox61(_ref8) {
-    var cid = _ref8.cid,
-        cnt = _ref8.cnt,
-        pgnum = _ref8.pgnum,
-        targetName = _ref8.targetName;
-
-    console.log('----///------> rotBox61() ', cid);
-
-    var dom = '';
-    // console.log('-------> cnt: ', cnt);
-    // console.log('addMore:', pgnum);
-    // console.log('ajax:', `http://da.wa.news.cn/nodeart/page?nid=${cid}&pgnum=${pgnum}&cnt=${cnt}&tp=1&orderby=1`);
-    var index = 0;
-
-    $.ajax({
-        url: AJAX_url,
-        data: {
-            // nid: isDev ? 11203173 : cid, // 11203173
-            nid: cid,
-            pgnum: pgnum,
-            cnt: cnt,
-            tp: 1,
-            orderby: 1
-            // type: 'GET',
-        },
-        dataType: 'JSONP',
-        success: function success(data) {
-            // console.log(data);
-            if (data.status == '-1') {
-                var msg = msgFn({ cid: cid, pgnum: pgnum, cnt: cnt });
-                $(targetName + ' .isNoContent').html(msg);
-            } else {
-                if (data.data.list.length > 0) {
-                    data.data.list.map(function (e, i) {
-
-                        console.log(e.Attr);
-
-                        if (e.Attr == 61) {
-                            if (index < 3) {
-                                dom += '<div class="swiper-slide item-rightPicTitleAbs">\n                                    <div class="item-rightPicTitleAbs-in">\n                                        ' + tp.pic(e) + '\n                                        <div class="textBox">\n                                            <div class="title">\n                                                <div class="text-in">\n                                                    ' + tp.title(e) + '\n                                                </div>\n                                            </div>\n                                            <div class="abs">\n                                                <div class="text-in">\n                                                    ' + tp.abs(e) + '\n                                                </div>\n                                            </div>\n                                            <a class="link external item-rightPicTitleAbs-more" herf="' + e.LinkUrl + '">\u8BE6\u60C5</a>\n                                        </div>\n                                    </div>\n                                </div>';
-
-                                index++;
-                            }
-                        }
-                    });
-                }
-            }
-
-            // $('.isLoadingTxt')
-            //     .html('')
-            //     .removeClass('isLoadingTxt');
-
-            if (targetName) {
-                $(targetName + ' .swiper-wrapper').html('\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                    ' + dom + '\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n                ');
-                rotBox61InitRot(targetName);
-            }
-            // else {
-            //     $(`#addDataListPos${cid}`)
-            //         .append(`
-            //         <!-- cid: ${cid}, cnt: ${cnt}, pgnum: ${pgnum} START -->
-            //         ${dom}
-            //         <!-- cid: ${cid}, cnt: ${cnt}, pgnum: ${pgnum} END -->
-            //     `);
-            // }
-        },
-        error: function error(xhr, ajaxOptions, thrownError) {
-            console.log(xhr, ajaxOptions, thrownError);
-            if (xhr.status == 404) {
-                $(targetName + ' .isNoContent').html(thrownError);
-            }
-        }
-    });
-};
 
 // import './mod/bigTitle.js'
 var addDataForHomepage = function addDataForHomepage(cid) {
-    rotBox61({
-        cid: cid['0'].cid,
-        cnt: 20,
-        pgnum: 1,
-        targetName: '#rotBox61'
-    });
+    var rotBox61InitRot = function rotBox61InitRot(targetName) {
+        var mySwiper = false;
+        if (mySwiper == false) {
+
+            console.log('rotBox61InitRot targetName:', targetName);
+
+            mySwiper = new Swiper(targetName + ' .swiper-container', {
+                loop: true,
+                speed: 3000,
+                autoplay: {
+                    delay: 4000
+                },
+                // freeMode: true,
+                watchOverflow: true,
+                // slidesPerView: 3,
+                // slidesPerGroup: 3,
+                // slidesPerColumn: 2,
+                // spaceBetween: 20,
+                pagination: {
+                    el: targetName + ' .swiper-pagination',
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: targetName + ' .swiper-button-next',
+                    prevEl: targetName + ' .swiper-button-prev'
+                },
+                effect: 'coverflow',
+                centeredSlides: true,
+                coverflowEffect: {
+                    rotate: 30,
+                    stretch: 40,
+                    depth: 80,
+                    modifier: 3,
+                    slideShadows: false
+                }
+                // slidesPerView: 3,
+                // centeredSlides: true,
+            });
+        }
+    };
+
+    var loadDataListItem = function loadDataListItem(_ref6) {
+        var cid = _ref6.cid,
+            cnt = _ref6.cnt,
+            pgnum = _ref6.pgnum,
+            targetName = _ref6.targetName;
+
+        // console.log('----------> loadDataListItem() ', cid);
+        // console.log(targetName);
+        // console.log('-------> cnt: ', cnt);
+        // console.log('addMore:', pgnum);
+        console.log('ajax:', 'http://da.wa.news.cn/nodeart/page?nid=' + cid + '&pgnum=' + pgnum + '&cnt=' + cnt + '&tp=1&orderby=1');
+        var index = 0;
+        var page = 0;
+        var dom = { 0: [] };
+        var index61 = 0;
+        var dom61 = '';
+
+        $.ajax({
+            url: AJAX_url,
+            data: {
+                // nid: isDev ? 11207721 : cid, // 11203173
+                nid: cid,
+                pgnum: pgnum,
+                cnt: cnt,
+                tp: 1,
+                orderby: 1
+                // type: 'GET',
+            },
+            dataType: 'JSONP',
+            success: function success(data) {
+                // console.log(data);
+                if (data.status == '-1') {
+                    $('#addData').html('暂无更多').addClass('disable');
+                    // $('html').addClass('isCtlNoContentHeight');
+                    var msg = msgFn({ cid: cid, pgnum: pgnum, cnt: cnt });
+                    if (targetName) {
+                        $(targetName + ' .isNoContent').html(msg);
+                    } else {
+                        $('.isNoContent' + cid).html(msg);
+                    }
+                } else {
+                    if (data.data.list.length > 0) {
+                        // $('html').removeClass('isCtlNoContentHeight');
+
+                        data.data.list.map(function (e, i) {
+                            if (e.Attr == 61) {
+                                if (index61 < 3) {
+                                    dom61 += '<div class="swiper-slide item-rightPicTitleAbs">\n                                        <div class="item-rightPicTitleAbs-in">\n                                            ' + tp.pic(e) + '\n                                            <div class="textBox">\n                                                <div class="title">\n                                                    <div class="text-in">\n                                                        ' + tp.title(e) + '\n                                                    </div>\n                                                </div>\n                                                <div class="abs">\n                                                    <div class="text-in">\n                                                        ' + tp.abs(e) + '\n                                                    </div>\n                                                </div>\n                                                <a class="link external item-rightPicTitleAbs-more" herf="' + e.LinkUrl + '">\u8BE6\u60C5</a>\n                                            </div>\n                                        </div>\n                                    </div>';
+                                    index61++;
+                                }
+                            } else {
+                                dom[page].push(e);
+                                if (index < 8) {
+                                    index++;
+                                } else {
+                                    console.log(page, index);
+                                    page++;
+                                    if (dom.hasOwnProperty(page) == false) {
+                                        dom[page] = [];
+                                    }
+                                    index = 0;
+                                }
+                            }
+                        });
+
+                        var targetName61 = '#rotBox61';
+                        $(targetName61 + ' .swiper-wrapper').html('\n                                <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                                ' + dom61 + '\n                                <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n                            ');
+                        rotBox61InitRot(targetName61);
+
+                        console.log(dom);
+
+                        // console.log('p1:', dom[0]);
+                        var domPage = 0;
+
+                        render(targetName, {
+                            dom: dom[domPage],
+                            cid: cid,
+                            cnt: cnt,
+                            pgnum: pgnum
+                        });
+
+                        $('#addData').on('click', function () {
+                            domPage++;
+                            if (dom.hasOwnProperty(domPage)) {
+                                render(false, {
+                                    dom: dom[domPage],
+                                    cid: cid,
+                                    cnt: cnt,
+                                    pgnum: pgnum
+                                });
+                            } else {
+                                $('.isNoContent.isNoContent').html('暂无更多');
+                                $('#addData').addClass('disable').off('click');
+                            }
+                        });
+                    }
+                }
+            }
+            // error: function (xhr, ajaxOptions, thrownError) {
+            //     console.log(xhr, ajaxOptions, thrownError);
+            //     if (xhr.status == 404) {
+            //         $('.isLoading').html(thrownError);
+            //     }
+            // },
+        });
+    };
+
+    var render = function render(targetName, _ref7) {
+        var dom = _ref7.dom,
+            cid = _ref7.cid,
+            cnt = _ref7.cnt,
+            pgnum = _ref7.pgnum;
+
+        $('.isLoading').html('').removeClass('isLoading');
+
+        var html = '';
+
+        dom.map(function (e, i) {
+            var aBegin = tp.a.start(e);
+            var aEnd = tp.a.end(e);
+            html += '<li data-index="' + i + '" data-docid="' + e.DocID + '"' + (e.PicLinks ? '' : 'class="noPic"') + '>\n                ' + tp.pic(e) + '\n                <div class="text">\n                    ' + aBegin + '\n                        <div class="title">\n                            ' + (e.Title ? '' + e.Title : '暂无标题') + '\n                        </div>\n                        <div class="title2">\n                            <div class="date">' + tp.date(e) + '</div>\n                            <div class="more">\u67E5\u770B\u8BE6\u60C5</div>\n                        </div>\n                    ' + aEnd + '\n                </div>\n            </li>';
+        });
+
+        if (targetName) {
+            $(targetName).html('\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                    ' + html + '\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n                ');
+        } else {
+            $('#addDataListPos').append('\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' START -->\n                    ' + html + '\n                    <!-- cid: ' + cid + ', cnt: ' + cnt + ', pgnum: ' + pgnum + ' END -->\n                ');
+        }
+    };
 
     loadDataListItem({
         cid: cid[0].cid,
-        cnt: 36,
+        cnt: 2000,
         pgnum: 1,
         targetName: '#addDataListPos'
     });
@@ -1039,7 +971,7 @@ var routes = [{
             setNav(cid); // 必须在前面，通过他设置 CHObj
 
             // setHomepageCol(cid);
-            setHomepageColByName();
+            // setHomepageColByName();
 
             addDataForHomepage(cid);
 
@@ -1053,123 +985,147 @@ var routes = [{
             // $$('.navBtn-home').addClass('active');
         }
     }
-}, {
-    name: '列表页',
-    path: '/page/:currentCid',
-    content: contentPageFn(),
-    on: {
-        pageInit: function pageInit(e, page) {
-            setNav(cid);
-            // console.log('cidAdd:', cidAdd);
-            var currentCid = page.route.params.currentCid;
-            var isCurrentCidPage = window.location.href.indexOf(currentCid) !== -1;
+},
+// {
+//     name: '列表页',
+//     path: '/page/:currentCid',
+//     content: contentPageFn(),
+//     on: {
+//         pageInit: function (e, page) {
+//             setNav(cid);
+//             // console.log('cidAdd:', cidAdd);
+//             let currentCid = page.route.params.currentCid;
+//             const isCurrentCidPage = window.location.href.indexOf(currentCid) !== -1;
 
-            // console.log('     | isCurrentCidPage:', isCurrentCidPage);
-            // console.log('     | currentCid:', currentCid);
+//             // console.log('     | isCurrentCidPage:', isCurrentCidPage);
+//             // console.log('     | currentCid:', currentCid);
 
-            if (isCurrentCidPage) {
-                var setCol = function setCol() {
-                    // 设置导航按钮
-                    $$('[data-id]').removeClass('active');
-                    var fatherRouter = void 0;
+//             if (isCurrentCidPage) {
+//                 const setCol = () => {
+//                     // 设置导航按钮
+//                     $$(`[data-id]`).removeClass('active');
+//                     let fatherRouter;
 
-                    var $active = $$('[data-id="id-' + currentCid + '"]');
-                    // console.log('--///---> $active:', currentCid, $active);
-                    // let spaColTitleTxt = $active.text();
-                    var spaColTitleTxt = cidMap.byCid[currentCid];
-                    // console.log('spaColTitleTxt:', spaColTitleTxt);
+//                     let $active = $$(`[data-id="id-${currentCid}"]`);
+//                     // console.log('--///---> $active:', currentCid, $active);
+//                     // let spaColTitleTxt = $active.text();
+//                     let spaColTitleTxt = cidMap.byCid[currentCid];
+//                     // console.log('spaColTitleTxt:', spaColTitleTxt);
 
-                    var isNeedFindFather = spaColTitleTxt == undefined;
-                    console.log('---> isNeedFindFather:', isNeedFindFather);
+//                     const isNeedFindFather = spaColTitleTxt == undefined;
+//                     console.log('---> isNeedFindFather:', isNeedFindFather);
 
-                    if (isNeedFindFather) {
-                        fatherRouter = findFather(currentCid);
-                        $active = $$('[data-id="id-' + fatherRouter.cid + '"]');
-                        spaColTitleTxt = fatherRouter.name;
-                    }
+//                     if (isNeedFindFather) {
+//                         fatherRouter = findFather(currentCid);
+//                         $active = $$(`[data-id="id-${fatherRouter.cid}"]`);
+//                         spaColTitleTxt = fatherRouter.name;
 
-                    console.log('fatherRouter:', fatherRouter);
+//                     }
 
-                    var channelRouter = cidMap.byName[spaColTitleTxt];
-                    var isHasChild = channelRouter ? channelRouter.child !== undefined : false;
+//                     console.log('fatherRouter:', fatherRouter);
 
-                    console.log('channelRouter:', channelRouter);
-                    console.log('isHasChild:', isHasChild);
 
-                    if ($active.length > 0) {
-                        $active.addClass('active');
-                        $$('.spaColTitle').prepend('\n                                <div class="' + $active.attr('class') + '"></div>\n                                <div class="middot"></div>\n                            ');
-                    }
-                    // else {
-                    //     // console.log('aaaa');
-                    //     console.log(cidAdd[currentCid]);
-                    //     if (cidAdd.hasOwnProperty(currentCid)) {
-                    //         spaColTitleTxt = cidAdd[currentCid].name;
-                    //     } else if (cidMap) {
-                    //         spaColTitleTxt = cidMap[currentCid];
-                    //         console.log(spaColTitleTxt);
-                    //     }
-                    // }
+//                     const channelRouter = cidMap.byName[spaColTitleTxt];
+//                     const isHasChild = channelRouter ? channelRouter.child !== undefined : false;
 
-                    $$('.navbar .title').text(spaColTitleTxt);
+//                     console.log('channelRouter:', channelRouter);
+//                     console.log('isHasChild:', isHasChild);
 
-                    var $spaColTitle = $('.spaColTitle');
-                    $spaColTitle.before('\n                            <div class="colFather itemsColSpBg">\n                                <a class="link" href="/page/' + (isNeedFindFather ? fatherRouter.cid : currentCid) + '">\n                                    <div class="colATxt">' + txtSplitByDash(spaColTitleTxt) + '</div>\n                                </a>\n                            </div>\n                        ');
-                    $spaColTitle.hide();
 
-                    if (isHasChild) {
-                        // $spaColTitle.text(txtSplitByDash(spaColTitleTxt));
-                        // const $spListArea = $('.spListArea');
-                        var $hasNav = $('.hasNav');
-                        var pageChildNavDom = setPageChildNavDomFn(channelRouter);
+//                     if ($active.length > 0) {
+//                         $active.addClass('active');
+//                         $$('.spaColTitle').prepend(`
+//                             <div class="${$active.attr('class')}"></div>
+//                             <div class="middot"></div>
+//                         `);
+//                     }
+//                     // else {
+//                     //     // console.log('aaaa');
+//                     //     console.log(cidAdd[currentCid]);
+//                     //     if (cidAdd.hasOwnProperty(currentCid)) {
+//                     //         spaColTitleTxt = cidAdd[currentCid].name;
+//                     //     } else if (cidMap) {
+//                     //         spaColTitleTxt = cidMap[currentCid];
+//                     //         console.log(spaColTitleTxt);
+//                     //     }
+//                     // }
 
-                        $hasNav.addClass('hasNav').prepend('\n                                <div class="pageChildNav">\n                                    ' + pageChildNavDom + '\n                                </div>\n                            ');
+//                     $$('.navbar .title').text(spaColTitleTxt);
 
-                        if (isNeedFindFather) {
-                            $('[data-childitem="childNav-' + currentCid + '"]').addClass('active');
-                            // $('html').addClass('isChildDom');
-                        }
-                        // else {
-                        //     $('html').removeClass('isChildDom');
-                        // }
-                    }
+//                     const $spaColTitle = $('.spaColTitle');
+//                     $spaColTitle.before(`
+//                         <div class="colFather itemsColSpBg">
+//                             <a class="link" href="/page/${isNeedFindFather ? fatherRouter.cid : currentCid}">
+//                                 <div class="colATxt">${txtSplitByDash(spaColTitleTxt)}</div>
+//                             </a>
+//                         </div>
+//                     `);
+//                     $spaColTitle.hide();
 
-                    // ctl father
-                    var father = channelRouter ? channelRouter.father : false;
-                    // console.log('father:', father);
-                    if (father) {
-                        $spaColTitle.before('\n                                <div class="colFather itemsColSpBg">\n                                    <div class="colATxt">' + father + '</div>\n                                </div>\n                            ');
 
-                        $$('[data-id="id-' + cidMap.byName[father].cid + '"]').addClass('active');
-                    }
+//                     if (isHasChild) {
+//                         // $spaColTitle.text(txtSplitByDash(spaColTitleTxt));
+//                         // const $spListArea = $('.spListArea');
+//                         const $hasNav = $('.hasNav');
+//                         const pageChildNavDom = setPageChildNavDomFn(channelRouter);
 
-                    clearTimeout(setCol_setTimeout);
-                    setCol_setTimeout = null;
-                };
+//                         $hasNav.addClass('hasNav').prepend(`
+//                             <div class="pageChildNav">
+//                                 ${pageChildNavDom}
+//                             </div>
+//                         `);
 
-                setCol_setTimeout = setTimeout(setCol, 400);
+//                         if (isNeedFindFather) {
+//                             $(`[data-childitem="childNav-${currentCid}"]`).addClass('active');
+//                             // $('html').addClass('isChildDom');
+//                         }
+//                         // else {
+//                         //     $('html').removeClass('isChildDom');
+//                         // }
+//                     }
 
-                // 设置数据写入 id
-                var $id = $$('#addDataListPos');
-                $id.attr('id', 'addDataListPos' + currentCid);
-                $id.attr('data-cid', currentCid);
 
-                // 暂无内容位置 (只能替换 class 名，新增会导致多个class)
-                $$('.isNoContent').attr('class', 'isNoContent isNoContent' + currentCid);
+//                     // ctl father
+//                     const father = channelRouter ? channelRouter.father : false;
+//                     // console.log('father:', father);
+//                     if (father) {
+//                         $spaColTitle.before(`
+//                             <div class="colFather itemsColSpBg">
+//                                 <div class="colATxt">${father}</div>
+//                             </div>
+//                         `);
 
-                // 查看更多按钮
-                $$('#addData').attr('id', 'addData' + currentCid);
+//                         $$(`[data-id="id-${cidMap.byName[father].cid}"]`).addClass('active');
+//                     }
 
-                pageFn(currentCid);
-            }
-        }
-    },
-    navbar: {
-        hideOnPageScroll: true
-    }
-}, {
+//                     clearTimeout(setCol_setTimeout);
+//                     setCol_setTimeout = null;
+//                 };
+
+//                 setCol_setTimeout = setTimeout(setCol, 400);
+
+//                 // 设置数据写入 id
+//                 const $id = $$('#addDataListPos');
+//                 $id.attr('id', 'addDataListPos' + currentCid);
+//                 $id.attr('data-cid', currentCid);
+
+//                 // 暂无内容位置 (只能替换 class 名，新增会导致多个class)
+//                 $$('.isNoContent').attr('class', 'isNoContent isNoContent' + currentCid);
+
+//                 // 查看更多按钮
+//                 $$('#addData').attr('id', 'addData' + currentCid);
+
+//                 pageFn(currentCid);
+//             }
+//         },
+//     },
+//     navbar: {
+//         hideOnPageScroll: true,
+//     },
+// },
+{
     path: '(.*)',
-    url: 'http://www.xiongan.gov.cn/404.html'
+    url: 'http://www.news.cn/404.html'
 }];
 
 // var theme = 'ios'; if (location.href.indexOf('theme=md') >= 0) theme = 'md';

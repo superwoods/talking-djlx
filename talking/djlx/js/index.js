@@ -21,7 +21,7 @@ const AJAX_url = 'http://da.wa.news.cn/nodeart/page';
 
 @import './mod/loadContnet.js'
 @import './mod/setUrlDom.js'
-@import './mod/loadDataListItem.js'
+// import './mod/loadDataListItem.js'
 
 
 // import './mod/memorabilia.js'
@@ -49,7 +49,7 @@ const AJAX_url = 'http://da.wa.news.cn/nodeart/page';
 // import './mod/picTitleAbsAndList.js'
 // import './mod/titleAbs.js'
 
-@import './mod/rotBox61.js'
+// import './mod/rotBox61.js'
 
 
 // import './mod/bigTitle.js'

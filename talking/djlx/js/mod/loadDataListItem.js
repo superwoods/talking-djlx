@@ -39,8 +39,10 @@ const loadDataListItem = ({ cid, cnt, pgnum, targetName }) => {
                     $('html').removeClass('isCtlNoContentHeight');
 
                     data.data.list.map((e, i) => {
-                        if (e.Attr !== 61) {
+                        if (e.Attr == 61) {
 
+
+                        } else {
                             dom[page].push(e);
                             if (index < 8) {
                                 index++;
@@ -54,6 +56,18 @@ const loadDataListItem = ({ cid, cnt, pgnum, targetName }) => {
                             }
                         }
                     });
+
+
+                    $(targetName + ' .swiper-wrapper')
+                        .html(`
+                            <!-- cid: ${cid}, cnt: ${cnt}, pgnum: ${pgnum} START -->
+                            ${dom}
+                            <!-- cid: ${cid}, cnt: ${cnt}, pgnum: ${pgnum} END -->
+                        `);
+
+                    rotBox61InitRot(targetName);
+
+
 
                     console.log(dom);
                     // console.log('index:', index);
