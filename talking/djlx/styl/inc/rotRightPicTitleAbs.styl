@@ -10,9 +10,9 @@ rotRightPicTitleAbsItemBoxHeight = 385px
 
 .rotRightPicTitleAbs
     margin-top: 40px
-    background-image: url(rotBg.png)
-    background-repeat: no-repeat
-    background-position: center center
+    // background-image: url(rotBgRel.png)
+    // background-repeat: no-repeat
+    // background-position: center center
 
 .rotRightPicTitleAbsBox
     position: relative
@@ -20,6 +20,34 @@ rotRightPicTitleAbsItemBoxHeight = 385px
 
 .rotRightPicTitleAbs-container
     .item-rightPicTitleAbs
+        position relative
+        background-image: url(rotBg.png)
+        background-repeat: no-repeat
+        background-position: center center
+
+        // &:after
+        // &:before
+        //     content: ''
+        //     display: block
+        //     position: absolute
+        //     background-repeat: no-repeat
+        //     height 505px
+        //     top: 0
+
+        // &:before
+        //     background-image: url(rotBgLeft.png)
+        //     background-position: 0 center
+        //     width: 700px
+        //     left 0
+        //     z-index: 1
+
+        // &:after
+        //     background-image: url(rotBgRight.png)
+        //     background-position: right center
+        //     width: 400px
+        //     right: 0
+        //     z-index 1
+
         .item-rightPicTitleAbs-in // .item-rightPicTitleAbs-in
             display: flex
             justify-content: space-around

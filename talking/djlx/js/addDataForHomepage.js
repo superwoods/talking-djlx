@@ -8,9 +8,9 @@ const addDataForHomepage = (cid) => {
             if (isPc) {
                 mySwiper = new Swiper(targetName + ' .swiper-container', {
                     loop: true,
-                    speed: 3000,
+                    speed: 1500,
                     autoplay: {
-                        delay: 4000
+                        delay: 3000
                     },
                     // freeMode: true,
                     watchOverflow: true,
