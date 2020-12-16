@@ -66,6 +66,7 @@ const AJAX_url = 'http://da.wa.news.cn/nodeart/page';
 @import './routes.js'
 
 @import './f7-app.js'
+@import './footer.js'
 
 
 
