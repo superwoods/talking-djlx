@@ -252,6 +252,9 @@ a:hover {
   width: 1200px;
   margin: 0 auto;
 }
+.footer .footer-in1 a img {
+  height: 76px;
+}
 .footer .textBox1 {
   display: flex;
   flex-direction: row;
@@ -277,13 +280,6 @@ a:hover {
   background-position: left bottom;
   padding-left: 36px;
 }
-.footer .textBox2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 210px;
-  margin: 0 auto 6px;
-}
 .footer .footer-in2 {
   width: 100%;
   margin: 0 auto;
@@ -291,12 +287,62 @@ a:hover {
   padding-top: 16px;
   margin-top: 16px;
 }
+.footer .textBox2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 210px;
+  margin: 0 auto 6px;
+}
 .is-mobile .footer {
   width: 100%;
   padding: 16px 0 30px;
 }
-.is-mobile .footer-in {
+.is-mobile .footer .footer-in1,
+.is-mobile .footer .footer-in2 {
   width: 90%;
+}
+.is-mobile .footer .footer-in1 a img {
+  height: 60px;
+}
+.is-mobile .footer .footer-in2 {
+  justify-content: flex-start;
+}
+.is-mobile .footer .textBox1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: auto;
+}
+.is-mobile .footer .text1,
+.is-mobile .footer .text2,
+.is-mobile .footer .text3 {
+  padding-left: 34px;
+}
+.is-mobile .footer .text1 {
+  background-position: 4px 8px;
+}
+.is-mobile .footer .text2 {
+  padding-top: 0;
+}
+.is-mobile .footer .text3 {
+  text-align: left;
+  background-position: 0 8px;
+  background-size: auto 28px;
+  margin-top: 6px;
+}
+.is-mobile .footer .text3 a {
+  display: block;
+}
+.is-mobile .footer .textBox2 {
+  display: flex;
+  justify-content: space-around;
+}
+.is-mobile .footer .text5,
+.is-mobile .footer .text6 {
+  font-size: 12px;
+  line-height: 16px;
 }
 .rotRightPicTitleAbs,
 .rotRightPicTitleAbsBox,

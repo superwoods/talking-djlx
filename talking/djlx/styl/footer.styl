@@ -20,7 +20,11 @@
         justify-content: space-between
         width 1200px
         margin: 0 auto
-    
+
+        a
+            img 
+                height 76px
+
     .textBox1
         display: flex
         flex-direction: row
@@ -45,13 +49,6 @@
         background-repeat: no-repeat
         background-position: left bottom
         padding-left: 36px
-
-    .textBox2
-        display: flex
-        flex-direction: row
-        justify-content: space-between
-        width: 210px
-        margin: 0 auto 6px
     
     .footer-in2
         width: 100%
@@ -60,12 +57,65 @@
         padding-top: 16px
         margin-top: 16px
 
-
+    .textBox2
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        width: 210px
+        margin: 0 auto 6px
 
 .is-mobile
     .footer
         width: 100%
         padding: 16px 0 30px
 
-        &-in
+        .footer-in1
+        .footer-in2
             width: 90% 
+        
+        .footer-in1
+            a
+                img
+                    height 60px
+
+        .footer-in2
+            justify-content: flex-start
+
+
+        .textBox1
+            display: flex
+            flex-direction: column
+            justify-content: space-around
+            align-items: flex-start
+            width: auto
+        
+        .text1
+        .text2
+        .text3
+            padding-left: 34px
+
+        .text1
+            // background-image: url(icon-phone.png)
+            // background-repeat: no-repeat
+            background-position: 4px 8px
+        
+        .text2
+            padding-top: 0
+
+        .text3
+            text-align: left
+            background-position: 0 8px
+            background-size: auto 28px
+            margin-top: 6px
+            a
+                display: block
+
+        .textBox2
+            display: flex
+            justify-content: space-around
+
+        .text5
+        .text6
+            font-size: 12px
+            line-height: 16px
+
