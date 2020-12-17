@@ -1868,6 +1868,11 @@ a:hover .itemsColTiny {
 .is-mobile .isNoContent.isNoContent {
   margin-bottom: 20px;
 }
+.isTalkinghomepage html,
+.isTalkinghomepage body {
+  width: 1200px;
+  overflow-x: hidden;
+}
 .isTalkinghomepage body,
 .isTalkinghomepage .bg,
 .isTalkinghomepage .page {
@@ -1878,7 +1883,7 @@ a:hover .itemsColTiny {
   box-shadow: none;
 }
 .isTalkinghomepage .topBox {
-  width: auto;
+  width: 400px;
   margin-top: 0;
   margin-left: 50px;
   height: 55px;
