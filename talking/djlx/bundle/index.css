@@ -1868,3 +1868,29 @@ a:hover .itemsColTiny {
 .is-mobile .isNoContent.isNoContent {
   margin-bottom: 20px;
 }
+.isTalkinghomepage body,
+.isTalkinghomepage .bg,
+.isTalkinghomepage .page {
+  background: none;
+  background-color: transparent;
+}
+.isTalkinghomepage .bg {
+  box-shadow: none;
+}
+.isTalkinghomepage .topBox {
+  width: auto;
+  margin-top: 0;
+  margin-left: 50px;
+  height: 55px;
+  padding-bottom: 30px;
+}
+.isTalkinghomepage .rightBox {
+  display: none;
+}
+.isTalkinghomepage .rotRightPicTitleAbs {
+  margin-top: 0;
+}
+.isTalkinghomepage .itemsColSpBg,
+.isTalkinghomepage .footer {
+  display: none;
+}

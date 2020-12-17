@@ -4,6 +4,18 @@
 var $$ = Dom7;
 var AJAX_url = 'http://da.wa.news.cn/nodeart/page';
 
+var isTalkinghomepageFn = function isTalkinghomepageFn() {
+    console.log('isTalkinghomepageFn:', window.location.href);
+    var isTalkinghomepage = /is-talkinghomepage/ig.test(window.location.href);
+    console.log('isTalkinghomepage:', isTalkinghomepage);
+    if (isTalkinghomepage) {
+        $('html').addClass('isTalkinghomepage');
+    }
+    return isTalkinghomepage;
+};
+
+var isTalkinghomepage = isTalkinghomepageFn();
+
 var msgFn = function msgFn(_ref) {
     var cid = _ref.cid,
         pgnum = _ref.pgnum,

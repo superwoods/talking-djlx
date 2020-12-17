@@ -2,6 +2,17 @@
 const $$ = Dom7;
 const AJAX_url = 'http://da.wa.news.cn/nodeart/page';
 
+const isTalkinghomepageFn = () => {
+    console.log('isTalkinghomepageFn:', window.location.href);
+    const isTalkinghomepage = /is-talkinghomepage/ig.test(window.location.href);
+    console.log('isTalkinghomepage:', isTalkinghomepage);
+    if (isTalkinghomepage) {
+        $('html').addClass('isTalkinghomepage');
+    }
+    return isTalkinghomepage;
+};
+
+const isTalkinghomepage = isTalkinghomepageFn();
 
 
 
@@ -67,6 +78,5 @@ const AJAX_url = 'http://da.wa.news.cn/nodeart/page';
 
 @import './f7-app.js'
 @import './footer.js'
-
 
 

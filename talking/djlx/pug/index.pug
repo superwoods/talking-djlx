@@ -23,12 +23,12 @@ html
         link(rel='stylesheet', href= MAIN_url + 'bundle/index.css')
 
 
-    body.theme-moo
+    body.theme-moo(style="background-color:transparent")
         
 
         <!-- body static START -->
         #app
-            .panel.panel-right.panel-cover.panel-resizable.panel-btnBoxbox
+            //- .panel.panel-right.panel-cover.panel-resizable.panel-btnBoxbox
                 .block
                     .panel-btnBox(data-js="setNav(cid)")
                         //- a(href='http://www.xiongan.gov.cn', title='中国雄安官网', target='_blank').link.external.panel-xaLogoA
@@ -54,7 +54,7 @@ html
                         //- .cover#cover
                         .topBox.bg
                             .topBox-in.area
-                                a(href="#" class="link external" target="_blank")
+                                a(href="/talking/djlx/" class="link external" target="_blank")
                                     img(src="bundle/xhw-djlx-logo.png", alt="")
                                 .rightBox
                                     a(href="#" class="link external" target="_blank")
