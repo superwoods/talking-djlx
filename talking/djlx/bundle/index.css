@@ -1896,6 +1896,7 @@ a:hover .itemsColTiny {
   margin-top: 0;
 }
 .isTalkinghomepage .itemsColSpBg,
-.isTalkinghomepage .footer {
+.isTalkinghomepage .footer,
+.isTalkinghomepage .area1 {
   display: none;
 }
