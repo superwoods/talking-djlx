@@ -241,23 +241,49 @@ var aAddClassFn = function aAddClassFn() {
 var TXT_nourl = '<!-- 暂无标题链接 -->';
 var TXT_notitle = '<!-- 暂无标题 -->';
 var TXT_nopic = '<!-- 暂无图片 / -->';
+
 var tp = {
     pic: function pic(e) {
+
+        if (isTalkinghomepage) {
+            e.LinkUrl = 'http://www.xinhuanet.com/talking/djlx/';
+        }
+
         return '<div class="pic" data-docid="' + e.DocID + '">' + (e.PicLinks ? (e.LinkUrl ? '<a href="' + e.LinkUrl + '" class="link external" target="_blank" data-docid="' + e.DocID + '">' : TXT_nourl) + '<img class="lazy lazy-fade-in" src="' + e.PicLinks + '" alt="' + (e.Title ? '' + e.Title : TXT_notitle) + '">' + (e.LinkUrl ? '</a>' : '') : TXT_nopic) + '</div>';
     },
     picNoImgNoPicDom: function picNoImgNoPicDom(e) {
+
+        if (isTalkinghomepage) {
+            e.LinkUrl = 'http://www.xinhuanet.com/talking/djlx/';
+        }
+
         return (e.PicLinks ? '\n            <div class="pic" data-docid="' + e.DocID + '">' + (e.LinkUrl ? '<a href="' + e.LinkUrl + '" class="link external" target="_blank" data-docid="' + e.DocID + '">' : TXT_nourl) + '<img class="lazy lazy-fade-in" src="' + e.PicLinks + '" alt="' + (e.Title ? '' + e.Title : TXT_notitle) + '">' + (e.LinkUrl ? '</a></div>' : '') : TXT_nopic) + '\n       ';
     },
     aImg: function aImg(e) {
+
+        if (isTalkinghomepage) {
+            e.LinkUrl = 'http://www.xinhuanet.com/talking/djlx/';
+        }
+
         return (e.PicLinks ? (e.LinkUrl ? '<a href="' + e.LinkUrl + '" class="link external" target="_blank" data-docid="' + e.DocID + '">' : TXT_nourl) + '<img class="lazy lazy-fade-in" data-docid="' + e.DocID + '" src="' + e.PicLinks + '" alt="' + (e.Title ? '' + e.Title : TXT_notitle) + '">' + (e.LinkUrl ? '</a>' : '') : TXT_nopic) + '</div>';
     },
     title: function title(e) {
+
+        if (isTalkinghomepage) {
+            e.LinkUrl = 'http://www.xinhuanet.com/talking/djlx/';
+        }
+
         return '' + (e.LinkUrl ? '<a href="' + e.LinkUrl + '" class="link external" target="_blank" data-docid="' + e.DocID + '">' : TXT_nourl) + (e.Title ? '' + e.Title : TXT_notitle) + (e.LinkUrl ? '</a>' : '');
     },
 
     a: {
         start: function start(e) {
             // tp.a.start(e)
+
+            if (isTalkinghomepage) {
+                e.LinkUrl = 'http://www.xinhuanet.com/talking/djlx/';
+            }
+
             return '' + (e.LinkUrl ? '<a href="' + e.LinkUrl + '" class="link external" target="_blank" data-docid="' + e.DocID + '">' : TXT_nourl);
         },
         end: function end(e) {
@@ -716,7 +742,7 @@ var addDataForHomepage = function addDataForHomepage(cid) {
                 mySwiper = new Swiper(targetName + ' .swiper-container', {
                     loop: true,
                     speed: 1500,
-                    autoplay: {
+                    autoplay: isDev ? false : {
                         delay: 3000
                     },
                     // freeMode: true,
@@ -741,7 +767,8 @@ var addDataForHomepage = function addDataForHomepage(cid) {
                         depth: 80,
                         modifier: 3,
                         slideShadows: false
-                    }
+                    },
+                    preventClicks: false
                     // slidesPerView: 3,
                     // centeredSlides: true,
                 });
@@ -827,9 +854,13 @@ var addDataForHomepage = function addDataForHomepage(cid) {
                         // $('html').removeClass('isCtlNoContentHeight');
 
                         data.data.list.map(function (e, i) {
+                            if (isTalkinghomepage) {
+                                e.LinkUrl = 'http://www.xinhuanet.com/talking/djlx/';
+                            }
+
                             if (e.Attr == 61) {
                                 if (index61 < 3) {
-                                    dom61 += '<div class="swiper-slide item-rightPicTitleAbs">\n                                        <div class="item-rightPicTitleAbs-in">\n                                            ' + tp.pic(e) + '\n                                            <div class="textBox">\n                                                <div class="title">\n                                                    <div class="text-in">\n                                                        ' + tp.title(e) + '\n                                                    </div>\n                                                </div>\n                                                <div class="abs">\n                                                    <div class="text-in">\n                                                        ' + tp.abs(e) + '\n                                                    </div>\n                                                </div>\n                                                <a class="link external item-rightPicTitleAbs-more" herf="' + e.LinkUrl + '">\u8BE6\u60C5</a>\n                                            </div>\n                                        </div>\n                                    </div>';
+                                    dom61 += '<div class="swiper-slide item-rightPicTitleAbs">\n                                        <div class="item-rightPicTitleAbs-in">\n                                            ' + tp.pic(e) + '\n                                            <div class="textBox">\n                                                <div class="title">\n                                                    <div class="text-in">\n                                                        ' + tp.title(e) + '\n                                                    </div>\n                                                </div>\n                                                <div class="abs">\n                                                    <div class="text-in">\n                                                        ' + tp.abs(e) + '\n                                                    </div>\n                                                </div>\n                                                <a class="link external item-rightPicTitleAbs-more" target="_blank" href="' + e.LinkUrl + '">\u8BE6\u60C5</a>\n                                            </div>\n                                        </div>\n                                    </div>';
                                     index61++;
                                 }
                             } else {
@@ -1254,6 +1285,10 @@ var mainView = app.views.create('.view-main', {
             // console.log(e, page);
             // aAddClassFn();
             $('.listBoxMoreBtn').click();
+
+            if (isTalkinghomepage) {
+                $('a').href('href', 'http://www.xinhuanet.com/talking/djlx/');
+            }
         }
         // pageInit: function (page) {
 

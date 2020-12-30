@@ -456,6 +456,7 @@ a:hover {
   padding-left: 28px;
   padding-right: 16px;
   font-weight: 400;
+  z-index: 99;
 }
 .rotRightPicTitleAbs-prev,
 .rotRightPicTitleAbs-next {
@@ -519,6 +520,7 @@ a:hover {
   right: auto;
   transform: none;
   height: 193px;
+  z-index: 99;
 }
 .is-mobile .rotRightPicTitleAbs-container .item-rightPicTitleAbs .textBox-in {
   margin: 0 auto;

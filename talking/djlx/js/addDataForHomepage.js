@@ -9,7 +9,7 @@ const addDataForHomepage = (cid) => {
                 mySwiper = new Swiper(targetName + ' .swiper-container', {
                     loop: true,
                     speed: 1500,
-                    autoplay: {
+                    autoplay: isDev ? false : {
                         delay: 3000
                     },
                     // freeMode: true,
@@ -35,6 +35,7 @@ const addDataForHomepage = (cid) => {
                         modifier: 3,
                         slideShadows: false
                     },
+                    preventClicks: false,
                     // slidesPerView: 3,
                     // centeredSlides: true,
                 });
@@ -115,6 +116,10 @@ const addDataForHomepage = (cid) => {
                         // $('html').removeClass('isCtlNoContentHeight');
 
                         data.data.list.map((e, i) => {
+                            if (isTalkinghomepage) {
+                                e.LinkUrl = 'http://www.xinhuanet.com/talking/djlx/';
+                            }
+
                             if (e.Attr == 61) {
                                 if (index61 < 3) {
                                     dom61 += `<div class="swiper-slide item-rightPicTitleAbs">
@@ -131,7 +136,7 @@ const addDataForHomepage = (cid) => {
                                                         ${tp.abs(e)}
                                                     </div>
                                                 </div>
-                                                <a class="link external item-rightPicTitleAbs-more" herf="${e.LinkUrl}">详情</a>
+                                                <a class="link external item-rightPicTitleAbs-more" target="_blank" href="${e.LinkUrl}">详情</a>
                                             </div>
                                         </div>
                                     </div>`;

@@ -8,5 +8,7 @@ const aAddClassFn = () => {
         if (isAdd) {
             $e.addClass('link external');
         }
+
+
     });
 };

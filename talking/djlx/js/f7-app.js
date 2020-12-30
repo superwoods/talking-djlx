@@ -81,6 +81,10 @@ var mainView = app.views.create('.view-main', {
             // console.log(e, page);
             // aAddClassFn();
             $('.listBoxMoreBtn').click();
+
+            if (isTalkinghomepage) {
+                $('a').href('href', 'http://www.xinhuanet.com/talking/djlx/');
+            }
         },
         // pageInit: function (page) {
 
