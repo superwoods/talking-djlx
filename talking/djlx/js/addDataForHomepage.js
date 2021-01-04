@@ -82,6 +82,7 @@ const addDataForHomepage = (cid) => {
         // console.log('-------> cnt: ', cnt);
         // console.log('addMore:', pgnum);
         console.log('ajax:', `http://da.wa.news.cn/nodeart/page?nid=${cid}&pgnum=${pgnum}&cnt=${cnt}&tp=1&orderby=1`);
+
         let index = 0;
         let page = 0;
         let dom = { 0: [] };

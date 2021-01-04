@@ -47,22 +47,22 @@ var cid = [
     isPage: 1
 }];
 
-if (isDev) {
-    cid[0].cid = 11208880;
-    // 	// 	// cid[1].cid = 11217530;
-    // 	// 	// cid[1].child[0].cid = 11208880;
-    // 	// 	// 	cid[2].cid = 11217531;
-    // 	// 	// 	cid[2].child[3].cid = 11207721;
-    // 	// 	// 	cid[3].cid = 11111888;
-    // 	// 	// 	// cid[4].cid = 11208880;
-    // 	// 	// 	// cid[5].cid = 11207723;
-    // 	// 	// 	// cid[6].cid = 11207721;
-    // 	// 	// 	// cid[0].cid = 11207721;
-    // 	// 	// 	// cid[1].cid = 11207722;
-    // 	// 	// 	// cid[2].cid = 11207723;
-    // 	// 	// 	// cid[3].cid = 11208880;
-    // 	// 	// 	// cid[4].cid = 11208881;
-}
+// if (isDev) {
+// 	cid[0].cid = 11208880;
+// 	// 	// 	// cid[1].cid = 11217530;
+// 	// 	// 	// cid[1].child[0].cid = 11208880;
+// 	// 	// 	// 	cid[2].cid = 11217531;
+// 	// 	// 	// 	cid[2].child[3].cid = 11207721;
+// 	// 	// 	// 	cid[3].cid = 11111888;
+// 	// 	// 	// 	// cid[4].cid = 11208880;
+// 	// 	// 	// 	// cid[5].cid = 11207723;
+// 	// 	// 	// 	// cid[6].cid = 11207721;
+// 	// 	// 	// 	// cid[0].cid = 11207721;
+// 	// 	// 	// 	// cid[1].cid = 11207722;
+// 	// 	// 	// 	// cid[2].cid = 11207723;
+// 	// 	// 	// 	// cid[3].cid = 11208880;
+// 	// 	// 	// 	// cid[4].cid = 11208881;
+// }
 
 var cidMap = function () {
     var r = {
@@ -820,6 +820,7 @@ var addDataForHomepage = function addDataForHomepage(cid) {
         // console.log('-------> cnt: ', cnt);
         // console.log('addMore:', pgnum);
         console.log('ajax:', 'http://da.wa.news.cn/nodeart/page?nid=' + cid + '&pgnum=' + pgnum + '&cnt=' + cnt + '&tp=1&orderby=1');
+
         var index = 0;
         var page = 0;
         var dom = { 0: [] };
